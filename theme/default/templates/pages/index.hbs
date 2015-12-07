@@ -1,0 +1,404 @@
+---
+page-title: Index
+page-class: "vsg-page vsg-page--index"
+---
+
+
+<main class="styleguide-section__main">
+
+    <div class="styleguide-section__container">
+
+        <h1>Basic Styleguide</h1>
+
+        <section id="styleguide-colors">
+
+            <h2>Visuals</h2>
+
+
+            <h3>Colors</h3>
+
+            {{#if index.colorsByGroup}}
+
+                <div class="m-tab theme-basic" data-label="All">
+
+                    <ul class="styleguide-colors">
+
+                        {{#each index.colors}}
+
+                            <li class="styleguide-color">
+                                <div class="styleguide-color__swatch" style="background-color: {{this.value}}"></div>
+                                <div class="styleguide-color__info">
+                                    <strong class="styleguide-color__label">{{this.name}}</strong>
+                                    <dl class="styleguide-color__attributes">
+                                        <dt>Property value</dt>
+                                        <dd contenteditable>{{this.value}}</dd>
+                                        <dt>Sass variable</dt>
+                                        <dd contenteditable>{{this.variable}}</dd>
+                                    </dl>
+                                </div>
+                            </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                </div>
+
+                <div class="m-tab theme-basic" data-label="By Group">
+                    {{#each index.colorsByGroup}}
+
+                        <h4>{{this.name}}</h4>
+
+                        <div class="clearfix">
+
+
+                            <ul class="styleguide-colors">
+
+                                {{#each this.colors}}
+
+                                    <li class="styleguide-color">
+                                        <div class="styleguide-color__swatch"
+                                             style="background-color: {{this.value}}"></div>
+                                        <div class="styleguide-color__info">
+                                            <strong class="styleguide-color__label">{{this.name}}</strong>
+                                            <dl class="styleguide-color__attributes">
+                                                <dt>Property value</dt>
+                                                <dd contenteditable>{{this.value}}</dd>
+                                                <dt>Sass variable</dt>
+                                                <dd contenteditable>{{this.variable}}</dd>
+                                            </dl>
+                                        </div>
+                                    </li>
+
+                                {{/each}}
+
+                            </ul>
+
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if index.gradients}}
+
+                <h3>Gradients</h3>
+
+                <ul class="styleguide-colors styleguide-colors--gradients">
+
+                    {{#each index.gradients}}
+
+                        <li class="styleguide-color{{#compare this.type 'radial'}} styleguide-color--radial{{/compare}}">
+                            <div class="styleguide-color__swatch" style="background-image: {{this.value}}"></div>
+                            <div class="styleguide-color__info">
+                                <strong class="styleguide-color__label">{{this.name}}</strong>
+                                <dl class="styleguide-color__attributes">
+                                    <dt>Property value</dt>
+                                    <dd contenteditable>{{this.value}}</dd>
+                                    <dt>Sass variable</dt>
+                                    <dd contenteditable>{{this.variable}}</dd>
+                                </dl>
+                            </div>
+                        </li>
+
+                    {{/each}}
+
+                </ul>
+
+            {{/if}}
+
+
+            {{#if index.boxShadows}}
+
+                <h3>Box Shadows</h3>
+
+                <ul class="styleguide-colors styleguide-colors--box-shadows">
+
+                    {{#each index.boxShadows}}
+
+                        <li class="styleguide-color">
+                            <div class="styleguide-color__swatch"
+                                 style="background: #fff; box-shadow: {{this.value}}"></div>
+                            <div class="styleguide-color__info">
+                                <strong class="styleguide-color__label">{{this.name}}</strong>
+                                <dl class="styleguide-color__attributes">
+                                    <dt>Property value</dt>
+                                    <dd contenteditable>{{this.value}}</dd>
+                                    <dt>Sass variable</dt>
+                                    <dd contenteditable>{{this.variable}}</dd>
+                                </dl>
+                            </div>
+                        </li>
+
+                    {{/each}}
+
+                </ul>
+
+            {{/if}}
+
+        </section>
+
+
+        <section id="styleguide-typography">
+
+            <h2>Typography</h2>
+
+            {{#if index.fonts}}
+                <h3>Fonts</h3>
+
+                <table>
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>Style</th>
+                        <th>Sass Variable</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each index.fonts}}
+                        <tr>
+                            <td>{{this.value}}</td>
+                            <td>
+                                {{#each this.weights}}
+                                    <span class="font-weight" style="font-weight: {{this}}">{{this}}</span>
+                                {{/each}}
+                            </td>
+                            <td><code contenteditable>{{this.variable}}</code></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+            {{/if}}
+
+            {{#if index.fontSizes}}
+                <h3>Sizes</h3>
+
+                <p>
+                    The root font size usually is the equivalent to 10px.
+                </p>
+
+                <table>
+                    <colgroup>
+                        <col width="30%">
+                        <col width="25%">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Sass Variable</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each index.fontSizes}}
+                        <tr>
+                            <th>{{this.name}}</th>
+                            <td>{{this.value}}</td>
+                            <td><code contenteditable>{{this.variable}}</code></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+
+                <h4>Examples</h4>
+
+                {{#each index.fontSizes}}
+                    <h5>{{this.name}} ({{this.value}}):</h5>
+
+                    <p style="font-size: {{this.value}}">
+                        Gregor Samsa erwachte eines Morgens.
+                    </p>
+                {{/each}}
+
+            {{/if}}
+
+            {{#if index.lineHeights}}
+                <h3>Line heights</h3>
+
+                <table>
+                    <colgroup>
+                        <col width="30%">
+                        <col width="25%">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value (em)</th>
+                        <th>Sass Variable</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each index.lineHeights}}
+                        <tr>
+                            <th>{{this.name}}</th>
+                            <td>{{this.value}}</td>
+                            <td><code contenteditable>{{this.variable}}</code></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+
+                <h4>Examples</h4>
+
+                {{#each index.lineHeights}}
+                    <h5>{{this.name}} ({{this.value}}em):</h5>
+
+                    <p style="line-height: {{this.value}}">
+                        Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon
+                        folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel
+                        beleumundeten
+                        Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute
+                        verschwinden wollte!
+                    </p>
+                {{/each}}
+
+            {{/if}}
+
+        </section>
+
+
+        <section id="styleguide-animation">
+
+            <h2>Animation</h2>
+
+            {{#if index.timings}}
+
+                <h3>Timings</h3>
+
+                <table>
+                    <colgroup>
+                        <col width="15%">
+                        <col width="25%">
+                        <col>
+                        <col width="40%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Sass Variable</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each index.timings}}
+                        <tr>
+                            <th>{{this.name}}</th>
+                            <td>{{this.value}}</td>
+                            <td><code contenteditable>{{this.variable}}</code></td>
+                            <td>
+                                <div class="styleguide-timing" style="animation-duration: {{this.value}}">
+                                    <input type="checkbox" class="styleguide-timing__toggle" value="{{this.value}}">
+
+                                    <div class="styleguide-timing__example">
+                                        {{this.name}} ({{this.value}})
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+            {{/if}}
+
+            {{#if index.transitions}}
+
+                <h3>Transitions</h3>
+
+                <table>
+                    <colgroup>
+                        <col width="15%">
+                        <col width="25%">
+                        <col>
+                        <col width="40%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Sass Variable</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each index.transitions}}
+                        <tr>
+                            <th>{{this.name}}</th>
+                            <td>{{this.value}}</td>
+                            <td><code contenteditable>{{this.variable}}</code></td>
+                            <td>
+                                <div class="styleguide-transition" style="transition: all {{this.value}}">
+                                    <input type="checkbox" class="styleguide-transition__toggle" value="{{this.value}}">
+
+                                    <div class="styleguide-transition__example">
+                                        {{this.name}} ({{this.value}})
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+            {{/if}}
+
+        </section>
+
+
+        {{#if index.spacingsByGroup}}
+            <section id="styleguide-dimensions">
+
+                <h2>Dimensions</h2>
+
+                {{#each index.spacingsByGroup}}
+
+                    <h3>{{this.name}}</h3>
+
+                    <table>
+                        <colgroup>
+                            <col width="30%">
+                            <col width="25%">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Sass Variable</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each this.spacings}}
+                            <tr>
+                                <th>{{this.name}}</th>
+                                <td>{{this.value}}</td>
+                                <td><code contenteditable>{{this.variable}}</code></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+
+                {{/each}}
+
+            </section>
+        {{/if}}
+
+
+    </div>
+
+</main>

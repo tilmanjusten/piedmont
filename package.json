@@ -1,0 +1,22 @@
+{
+  "name": "piedmont",
+  "version": "0.0.1",
+  "description": "Creates Living Styleguide from Frontend Prototype and its Source Files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "living",
+    "styleguide"
+  ],
+  "author": "Tilman Justen <info@tilmanjusten.de>",
+  "license": "MIT",
+  "dependencies": {
+    "assemble": "^0.4.42",
+    "glob": "^6.0.1",
+    "component-inventory": "/Users/tilman/Sites/grunt-plugins/component-inventory",
+    "partial-extract": "/Users/tilman/Sites/grunt-plugins/partial-extract",
+    "scss-comment-parser": "git@github.com:tilmanjusten/scss-comment-parser.git"
+  }
+}
