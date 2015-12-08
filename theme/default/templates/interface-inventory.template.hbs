@@ -1,0 +1,103 @@
+---
+page-title: Interface Inventory
+page-class: "vsg-page vsg-page--inventory"
+---
+
+
+<main class="styleguide-section__main">
+
+    <div class="styleguide-section__container">
+
+
+    <% if (_.isArray(navigation.items) && _.isBoolean(isIndex) && isIndex === true) { %>
+
+        <h1>Interface Inventory</h1>
+
+        <nav class="styleguide-inventory__navigation">
+            <ul>
+                <% _.forEach(navigation.items, function (item) { %>
+                <li><a href="<%= item.href %>"><%- item.name %> (<%= item.itemLength %>)</a></li>
+                <% }); %>
+            </ul>
+        </nav>
+
+    <% } %>
+
+
+
+    <% if (_.isArray(categories) && _.isBoolean(isIndex) && isIndex === false) { %>
+
+        <% _.forEach(categories, function (category) { %>
+        <h1>Interface Inventory</h1>
+
+        <section class="styleguide-inventory">
+
+            <h2 class="styleguide-inventory__title"><%- category.name %></h2>
+
+            <% _.forEach(category.items, function (item) { %>
+
+            <div class="styleguide-component">
+
+                <h3 class="styleguide-component__title"><%- item.name %></h3>
+
+                <div class="m-tab" data-label="Ansicht">
+
+                    <h4 class="styleguide-component__headline">Ansicht</h4>
+
+                    <div class="styleguide-component__view">
+                        <div class="styleguide-iframe" data-resources="<%= _.escape(JSON.stringify(item.resources)) %>">
+                            <%= _.escape(item.view) %>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="m-tab" data-label="Code">
+
+                    <h4 class="styleguide-component__headline">Code</h4>
+
+                    <div class="styleguide-component__code" contenteditable><pre class="language-markup"><code><%= _.escape(item.partial) %></code></pre></div>
+
+                </div>
+
+                <div class="m-tab" data-label="Info">
+
+                    <h4 class="styleguide-component__headline">Info</h4>
+
+                    <dl class="styleguide-component__info">
+                        <dt>ID</dt>
+                        <dd><%= item.id %></dd>
+                        <dt>View ID</dt>
+                        <dd><%= item.viewId %></dd>
+                        <dt>Verwendung</dt>
+                        <dd>
+                            <ol>
+                                <% _.forEach(item.usage, function (use) { %>
+                                <li><%= use %></li>
+                                <% }); %>
+                            </ol>
+                        </dd>
+                    </dl>
+
+                </div>
+
+                <div class="m-tab" data-label="Code der Ansicht">
+
+                    <h4 class="styleguide-component__headline">Code der Ansicht</h4>
+
+                    <div class="styleguide-component__code" contenteditable><pre class="language-markup"><code><%= _.escape(item.view) %></code></pre></div>
+
+                </div>
+
+            </div>
+
+            <% }); %>
+
+        </section>
+        <% }); %>
+
+    <% }; %>
+
+    </div>
+
+</main>
