@@ -1,8 +1,6 @@
 'use strict';
 
-var PartialExtract = require('partial-extract'),
-    ComponentInventory = require('component-inventory'),
-    StylesheetParser = require('./lib/stylesheet_parser'),
+var StylesheetParser = require('./lib/stylesheet_parser'),
     PrepareStyleguide = require('./lib/prepare_styleguide'),
     exec = require('child_process').exec,
     _ = require('lodash'),
@@ -30,35 +28,8 @@ var PartialExtract = require('partial-extract'),
 //      - copy assets of the frontend prototype to ./dist/assets/
 
 
-// Extract partials
-var files = glob.sync('./inventory/dist/*.html');
-
-var pe = new PartialExtract(files, {
-    force: true,
-    base: './inventory/',
-    storage: './inventory/data/extracted-partials.json',
-    //partialWrap: false,
-    //flatten: true,
-    storePartials: false,
-    partials: 'partials/'
-}); 
-
-// Build component inventory
-var ci = new ComponentInventory({
-    expand: true,
-    destData: './inventory/templates/data/inventory.json',
-    destPartials: './inventory/partials/',
-    template: './theme/default/templates/interface-inventory.template.hbs',
-    storage: './inventory/data/extracted-partials.json',
-    dest: {
-        path: './inventory/templates/pages/',
-        filename: 'interface-inventory',
-        ext: '.hbs',
-        productionExt: '.html'
-    },
-    storePartials: false,
-    partialExt: '.html'
-});
+// Extract partials and build component inventory
+exec('grunt inventory');
 
 // Make Styleguide
 var parser = new StylesheetParser(),
@@ -71,13 +42,10 @@ var parser = new StylesheetParser(),
 // Create styleguide as json that will be used when the templates will be built with assemble
 preparator.create(styleguide, './inventory/templates/data/index.json');
 
-
 // Build templates
 exec('grunt templates');
 
 // Assets
 exec('grunt assets');
-
-
 
 module.exports = {};
