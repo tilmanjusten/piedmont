@@ -12,8 +12,8 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
 var config = {
     theme: './theme/default/',
     tmp: './inventory/',
-    src: './source/',
-    dest: './dist/',
+    src: './dist/',
+    dest: './styling-guidelines/',
     styles: './inventory/src/sass/**/*.scss',
     configFile: './inventory/piedmont.json'
 };
