@@ -9,6 +9,14 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
     path = require('path'),
     util = require('util');
 
+var config = {
+    theme: './theme/default/',
+    tmp: './inventory/',
+    src: './source/',
+    dest: './dist/',
+    styles: './inventory/src/sass/**/*.scss'
+};
+
 // Process
 // - extract partials
 //      - from html files in ./inventory/dist/*.html
@@ -34,13 +42,13 @@ exec('grunt inventory');
 // Make Styleguide
 var parser = new StylesheetParser(),
     preparator = new PrepareStyleguide(),
-    styleguide = parser.parse('./inventory/src/sass/**/*.scss');
+    styleguide = parser.parse(config.styles);
 
 // maybe we don't need to store the extracted styleguide data on the file system
 //parser.write('./inventory/data/styleguide.json');
 
 // Create styleguide as json that will be used when the templates will be built with assemble
-preparator.create(styleguide, './inventory/templates/data/index.json');
+preparator.create(styleguide, config.tmp + 'templates/data/index.json');
 
 // Build templates
 exec('grunt templates');

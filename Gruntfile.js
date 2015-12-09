@@ -2,38 +2,46 @@
 
 var grunt = require('grunt');
 
+var config = {
+    theme: './theme/default/',
+    tmp: './inventory/',
+    src: './source/',
+    dest: './dist/',
+    styles: './inventory/src/sass/**/*.scss'
+};
+
 grunt.initConfig({
 
     assemble: {
         options: {
             flatten: true,
-            assets: './theme/default/assets/',
+            assets: config.theme + 'assets/',
             helpers: [
-                './theme/default/templates/helpers/*.js',
+                config.theme + 'templates/helpers/*.js',
                 'handlebars-helpers'
             ],
             partials: [
-                './theme/default/templates/partials/**/*.hbs',
-                './inventory/templates/partials/**/*.hbs'
+                config.theme + 'templates/partials/**/*.hbs',
+                config.tmp + 'templates/partials/**/*.hbs'
             ],
             layout: 'default.hbs',
-            layoutdir: './theme/default/templates/layouts',
+            layoutdir: config.theme + 'templates/layouts',
             data: [
-                './theme/default/templates/data/*.{json,yml}',
-                './inventory/templates/data/*.{json,yml}'
+                config.theme + 'templates/data/*.{json,yml}',
+                config.tmp + 'templates/data/*.{json,yml}'
             ]
         },
 
         inventory: {
             files: [{
                 expand: true,
-                cwd: './theme/default/templates/pages/',
+                cwd: config.theme + 'templates/pages/',
                 src: '**/*.hbs',
                 dest: './dist',
                 flatten: true
             }, {
                 expand: true,
-                cwd: './inventory/templates/pages/',
+                cwd: config.tmp + 'templates/pages/',
                 src: '**/*.hbs',
                 dest: './dist',
                 flatten: true
@@ -45,12 +53,12 @@ grunt.initConfig({
         inventory: {
             options: {
                 expand: true,
-                destData: './inventory/templates/data/inventory.json',
-                destPartials: './inventory/partials/',
-                template: './theme/default/templates/interface-inventory.template.hbs',
-                storage: './inventory/data/extracted-partials.json',
+                destData: config.tmp + 'templates/data/inventory.json',
+                destPartials: config.tmp + 'partials/',
+                template: config.theme + 'templates/interface-inventory.template.hbs',
+                storage: config.tmp + 'data/extracted-partials.json',
                 dest: {
-                    path: './inventory/templates/pages/',
+                    path: config.tmp + 'templates/pages/',
                     filename: 'interface-inventory',
                     ext: '.hbs',
                     productionExt: '.html'
@@ -66,8 +74,8 @@ grunt.initConfig({
             files: [{
                 expand: true,
                 dot: false,
-                cwd: './theme/default/',
-                dest: './dist/',
+                cwd: config.theme,
+                dest: config.dest,
                 src: [
                     'css/**',
                     'fonts/**',
@@ -82,8 +90,8 @@ grunt.initConfig({
 
             files: [{
                 expand: true,
-                cwd: './inventory/dist/',
-                dest: './dist/assets/',
+                cwd: config.source,
+                dest: config.dest + 'assets/',
                 src: [
                     '**/*',
                     '!*.html'
@@ -96,8 +104,8 @@ grunt.initConfig({
         inventory: {
             options: {
                 force: true,
-                base: './inventory/',
-                storage: './inventory/data/extracted-partials.json',
+                base: config.tmp,
+                storage: config.tmp + 'data/extracted-partials.json',
                 //partialWrap: false,
                 //flatten: true,
                 storePartials: false,
@@ -105,7 +113,7 @@ grunt.initConfig({
             },
             files: [{
                 expand: true,
-                cwd: './inventory/dist/',
+                cwd: config.source,
                 src: '*.html'
             }]
         }
