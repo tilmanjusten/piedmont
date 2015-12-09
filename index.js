@@ -9,7 +9,7 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
     path = require('path'),
     util = require('util');
 
-var config = {
+var options = {
     theme: './theme/default/',
     tmp: './inventory/',
     src: './dist/',
@@ -18,46 +18,48 @@ var config = {
     configFile: './inventory/piedmont.json'
 };
 
-// Write config to file
-fs.writeFileSync(config.configFile, JSON.stringify(config, null, '\t'), 'utf8');
+module.exports = function (_options) {
+    var config = _.assign(options, _options);
 
-// Process
-// - extract partials
-//      - from html files in ./inventory/dist/*.html
-//      - store in ./inventory/data/extracted-partials.json
-// - build component inventory
-//      - use database in ./inventory/data/extracted-partials.json
-//      - store data in ./inventory/templates/data/inventory.json
-//      - store section templates in ./inventory/templates/pages/
-//      - store partials in ./inventory/partials/
-// - make styleguide
-//      - parse scss files in ./inventory/src/sass
-// - build templates
-//      - use assemble to build templates from theme/default/templates/ and inventory/templates/
-//      - use data from theme/default/templates/data and inventory/templates/data
-// - assets
-//      - copy theme assets (css/, js/, fonts/, img/, assets/ for now) to ./dist/. Maybe we need to add a manifest file
-//      - copy assets of the frontend prototype to ./dist/assets/
+    // Write config to file
+    fs.writeFileSync(config.configFile, JSON.stringify(config, null, '\t'), 'utf8');
+
+    // Process
+    // - extract partials
+    //      - from html files in ./inventory/dist/*.html
+    //      - store in ./inventory/data/extracted-partials.json
+    // - build component inventory
+    //      - use database in ./inventory/data/extracted-partials.json
+    //      - store data in ./inventory/templates/data/inventory.json
+    //      - store section templates in ./inventory/templates/pages/
+    //      - store partials in ./inventory/partials/
+    // - make styleguide
+    //      - parse scss files in ./inventory/src/sass
+    // - build templates
+    //      - use assemble to build templates from theme/default/templates/ and inventory/templates/
+    //      - use data from theme/default/templates/data and inventory/templates/data
+    // - assets
+    //      - copy theme assets (css/, js/, fonts/, img/, assets/ for now) to ./dist/. Maybe we need to add a manifest file
+    //      - copy assets of the frontend prototype to ./dist/assets/
 
 
-// Extract partials and build component inventory
-exec('grunt inventory --configFile=' + config.configFile);
+    // Extract partials and build component inventory
+    exec('grunt inventory --configFile=' + config.configFile);
 
-// Make Styleguide
-var parser = new StylesheetParser(),
-    preparator = new PrepareStyleguide(),
-    styleguide = parser.parse(config.styles);
+    // Make Styleguide
+    var parser = new StylesheetParser(),
+        preparator = new PrepareStyleguide(),
+        styleguide = parser.parse(config.styles);
 
-// maybe we don't need to store the extracted styleguide data on the file system
-//parser.write('./inventory/data/styleguide.json');
+    // maybe we don't need to store the extracted styleguide data on the file system
+    //parser.write('./inventory/data/styleguide.json');
 
-// Create styleguide as json that will be used when the templates will be built with assemble
-preparator.create(styleguide, config.tmp + 'templates/data/styleguide.json');
+    // Create styleguide as json that will be used when the templates will be built with assemble
+    preparator.create(styleguide, config.tmp + 'templates/data/styleguide.json');
 
-// Build templates
-exec('grunt template --configFile=' + config.configFile);
+    // Build templates
+    exec('grunt template --configFile=' + config.configFile);
 
-// Assets
-exec('grunt assets --configFile=' + config.configFile);
-
-module.exports = {};
+    // Assets
+    exec('grunt assets --configFile=' + config.configFile);
+};
