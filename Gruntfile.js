@@ -84,7 +84,7 @@ grunt.initConfig({
 
             files: [{
                 expand: true,
-                cwd: config.source,
+                cwd: config.src,
                 dest: config.dest + 'assets/',
                 src: [
                     '**/*',
@@ -107,7 +107,7 @@ grunt.initConfig({
             },
             files: [{
                 expand: true,
-                cwd: config.source,
+                cwd: config.src,
                 src: '*.html'
             }]
         }
