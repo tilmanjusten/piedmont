@@ -48,7 +48,7 @@ var parser = new StylesheetParser(),
 //parser.write('./inventory/data/styleguide.json');
 
 // Create styleguide as json that will be used when the templates will be built with assemble
-preparator.create(styleguide, config.tmp + 'templates/data/index.json');
+preparator.create(styleguide, config.tmp + 'templates/data/styleguide.json');
 
 // Build templates
 exec('grunt templates');

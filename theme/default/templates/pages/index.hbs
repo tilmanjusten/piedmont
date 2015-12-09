@@ -17,13 +17,13 @@ page-class: "vsg-page vsg-page--index"
 
             <h3>Colors</h3>
 
-            {{#if index.colorsByGroup}}
+            {{#if styleguide.colorsByGroup}}
 
                 <div class="m-tab theme-basic" data-label="All">
 
                     <ul class="styleguide-colors">
 
-                        {{#each index.colors}}
+                        {{#each styleguide.colors}}
 
                             <li class="styleguide-color">
                                 <div class="styleguide-color__swatch" style="background-color: {{this.value}}"></div>
@@ -45,7 +45,7 @@ page-class: "vsg-page vsg-page--index"
                 </div>
 
                 <div class="m-tab theme-basic" data-label="By Group">
-                    {{#each index.colorsByGroup}}
+                    {{#each styleguide.colorsByGroup}}
 
                         <h4>{{this.name}}</h4>
 
@@ -84,13 +84,13 @@ page-class: "vsg-page vsg-page--index"
             {{/if}}
 
 
-            {{#if index.gradients}}
+            {{#if styleguide.gradients}}
 
                 <h3>Gradients</h3>
 
                 <ul class="styleguide-colors styleguide-colors--gradients">
 
-                    {{#each index.gradients}}
+                    {{#each styleguide.gradients}}
 
                         <li class="styleguide-color{{#compare this.type 'radial'}} styleguide-color--radial{{/compare}}">
                             <div class="styleguide-color__swatch" style="background-image: {{this.value}}"></div>
@@ -112,13 +112,13 @@ page-class: "vsg-page vsg-page--index"
             {{/if}}
 
 
-            {{#if index.boxShadows}}
+            {{#if styleguide.boxShadows}}
 
                 <h3>Box Shadows</h3>
 
                 <ul class="styleguide-colors styleguide-colors--box-shadows">
 
-                    {{#each index.boxShadows}}
+                    {{#each styleguide.boxShadows}}
 
                         <li class="styleguide-color">
                             <div class="styleguide-color__swatch"
@@ -147,7 +147,7 @@ page-class: "vsg-page vsg-page--index"
 
             <h2>Typography</h2>
 
-            {{#if index.fonts}}
+            {{#if styleguide.fonts}}
                 <h3>Fonts</h3>
 
                 <table>
@@ -164,7 +164,7 @@ page-class: "vsg-page vsg-page--index"
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each index.fonts}}
+                    {{#each styleguide.fonts}}
                         <tr>
                             <td>{{this.value}}</td>
                             <td>
@@ -180,7 +180,7 @@ page-class: "vsg-page vsg-page--index"
 
             {{/if}}
 
-            {{#if index.fontSizes}}
+            {{#if styleguide.fontSizes}}
                 <h3>Sizes</h3>
 
                 <p>
@@ -201,7 +201,7 @@ page-class: "vsg-page vsg-page--index"
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each index.fontSizes}}
+                    {{#each styleguide.fontSizes}}
                         <tr>
                             <th>{{this.name}}</th>
                             <td>{{this.value}}</td>
@@ -214,7 +214,7 @@ page-class: "vsg-page vsg-page--index"
 
                 <h4>Examples</h4>
 
-                {{#each index.fontSizes}}
+                {{#each styleguide.fontSizes}}
                     <h5>{{this.name}} ({{this.value}}):</h5>
 
                     <p style="font-size: {{this.value}}">
@@ -224,7 +224,7 @@ page-class: "vsg-page vsg-page--index"
 
             {{/if}}
 
-            {{#if index.lineHeights}}
+            {{#if styleguide.lineHeights}}
                 <h3>Line heights</h3>
 
                 <table>
@@ -241,7 +241,7 @@ page-class: "vsg-page vsg-page--index"
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each index.lineHeights}}
+                    {{#each styleguide.lineHeights}}
                         <tr>
                             <th>{{this.name}}</th>
                             <td>{{this.value}}</td>
@@ -254,7 +254,7 @@ page-class: "vsg-page vsg-page--index"
 
                 <h4>Examples</h4>
 
-                {{#each index.lineHeights}}
+                {{#each styleguide.lineHeights}}
                     <h5>{{this.name}} ({{this.value}}em):</h5>
 
                     <p style="line-height: {{this.value}}">
@@ -275,7 +275,7 @@ page-class: "vsg-page vsg-page--index"
 
             <h2>Animation</h2>
 
-            {{#if index.timings}}
+            {{#if styleguide.timings}}
 
                 <h3>Timings</h3>
 
@@ -295,7 +295,7 @@ page-class: "vsg-page vsg-page--index"
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each index.timings}}
+                    {{#each styleguide.timings}}
                         <tr>
                             <th>{{this.name}}</th>
                             <td>{{this.value}}</td>
@@ -316,7 +316,7 @@ page-class: "vsg-page vsg-page--index"
 
             {{/if}}
 
-            {{#if index.transitions}}
+            {{#if styleguide.transitions}}
 
                 <h3>Transitions</h3>
 
@@ -336,7 +336,7 @@ page-class: "vsg-page vsg-page--index"
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each index.transitions}}
+                    {{#each styleguide.transitions}}
                         <tr>
                             <th>{{this.name}}</th>
                             <td>{{this.value}}</td>
@@ -360,12 +360,12 @@ page-class: "vsg-page vsg-page--index"
         </section>
 
 
-        {{#if index.spacingsByGroup}}
+        {{#if styleguide.spacingsByGroup}}
             <section id="styleguide-dimensions">
 
                 <h2>Dimensions</h2>
 
-                {{#each index.spacingsByGroup}}
+                {{#each styleguide.spacingsByGroup}}
 
                     <h3>{{this.name}}</h3>
 
