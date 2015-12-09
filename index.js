@@ -4,24 +4,29 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
     PrepareStyleguide = require('./lib/prepare_styleguide'),
     exec = require('child_process').exec,
     _ = require('lodash'),
-    glob = require('glob'),
+    mkdirp = require('mkdirp'),
     fs = require('fs'),
-    path = require('path'),
-    util = require('util');
+    path = require('path');
 
 var options = {
-    theme: './theme/default/',
-    tmp: './.tmp/inventory/',
-    src: './dist/',
-    dest: './styling-guidelines/',
+    theme: path.resolve(__dirname, 'theme/default/'),
+    tmp: '.tmp/inventory',
+    src: 'dist',
+    dest: 'styling-guidelines',
     styles: './src/sass/**/*.scss',
-    configFile: './.tmp/inventory/piedmont.json'
+    configFile: '.tmp/inventory/piedmont.json'
 };
 
 module.exports = function (_options) {
     var config = _.assign(options, _options);
 
-    // Write config to file
+    // Write config to file and create destination directory if not exists
+    try {
+        fs.accessSync(path.dirname(config.configFile), fs.R_OK | fs.W_OK);
+    } catch (err) {
+        mkdirp.sync(path.dirname(config.configFile));
+    }
+
     fs.writeFileSync(config.configFile, JSON.stringify(config, null, '\t'), 'utf8');
 
     // Process
@@ -55,7 +60,7 @@ module.exports = function (_options) {
     //parser.write('./inventory/data/styleguide.json');
 
     // Create styleguide as json that will be used when the templates will be built with assemble
-    preparator.create(styleguide, config.tmp + 'templates/data/styleguide.json');
+    preparator.create(styleguide, path.resolve(config.tmp, 'templates/data/styleguide.json'));
 
     // Build templates
     exec('grunt template --configFile=' + config.configFile);

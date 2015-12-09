@@ -19,6 +19,7 @@
     "grunt-component-inventory": "^0.4.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-partial-extract": "^0.4.0",
+    "mkdirp": "^0.5.1",
     "scss-comment-parser": "git@github.com:tilmanjusten/scss-comment-parser.git"
   }
 }
