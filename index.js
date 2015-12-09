@@ -11,11 +11,11 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
 
 var options = {
     theme: './theme/default/',
-    tmp: './inventory/',
+    tmp: './.tmp/inventory/',
     src: './dist/',
     dest: './styling-guidelines/',
-    styles: './inventory/src/sass/**/*.scss',
-    configFile: './inventory/piedmont.json'
+    styles: './src/sass/**/*.scss',
+    configFile: './.tmp/inventory/piedmont.json'
 };
 
 module.exports = function (_options) {
