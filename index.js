@@ -14,8 +14,12 @@ var config = {
     tmp: './inventory/',
     src: './source/',
     dest: './dist/',
-    styles: './inventory/src/sass/**/*.scss'
+    styles: './inventory/src/sass/**/*.scss',
+    configFile: './inventory/piedmont.json'
 };
+
+// Write config to file
+fs.writeFileSync(config.configFile, JSON.stringify(config, null, '\t'), 'utf8');
 
 // Process
 // - extract partials
@@ -37,7 +41,7 @@ var config = {
 
 
 // Extract partials and build component inventory
-exec('grunt inventory');
+exec('grunt inventory --configFile=' + config.configFile);
 
 // Make Styleguide
 var parser = new StylesheetParser(),
@@ -51,9 +55,9 @@ var parser = new StylesheetParser(),
 preparator.create(styleguide, config.tmp + 'templates/data/styleguide.json');
 
 // Build templates
-exec('grunt templates');
+exec('grunt template --configFile=' + config.configFile);
 
 // Assets
-exec('grunt assets');
+exec('grunt assets --configFile=' + config.configFile);
 
 module.exports = {};

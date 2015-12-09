@@ -2,13 +2,7 @@
 
 var grunt = require('grunt');
 
-var config = {
-    theme: './theme/default/',
-    tmp: './inventory/',
-    src: './source/',
-    dest: './dist/',
-    styles: './inventory/src/sass/**/*.scss'
-};
+var config = grunt.readJSON(grunt.option('configFile'));
 
 grunt.initConfig({
 
