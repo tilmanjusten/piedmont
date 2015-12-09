@@ -8,10 +8,10 @@ page-class: "vsg-page vsg-page--inventory"
 
     <div class="styleguide-section__container">
 
+    <h1>Interface Inventory</h1>
 
     <% if (_.isArray(navigation.items) && _.isBoolean(isIndex) && isIndex === true) { %>
 
-        <h1>Interface Inventory</h1>
 
         <nav class="styleguide-inventory__navigation">
             <ul>
@@ -28,7 +28,6 @@ page-class: "vsg-page vsg-page--inventory"
     <% if (_.isArray(categories) && _.isBoolean(isIndex) && isIndex === false) { %>
 
         <% _.forEach(categories, function (category) { %>
-        <h1>Interface Inventory</h1>
 
         <section class="styleguide-inventory">
 
