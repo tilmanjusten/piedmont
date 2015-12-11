@@ -4,3 +4,5 @@ node_modules
 inventory
 dist
 example
+test
+.tmp
