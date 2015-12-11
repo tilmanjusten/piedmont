@@ -90,7 +90,6 @@ module.exports = function (_options) {
     preparator.create(styleguide, config.tmp + '/templates/data/styleguide.json');
 
     // Build templates
-    //assemble.pages([config.tmp + 'templates/pages/*.hbs', config.theme + '/templates/pages/*.hbs']);
     assemble.partials(config.theme + '/templates/partials/**/*.hbs');
     assemble.layouts(config.theme + '/templates/layouts/*.hbs');
     assemble.data([config.tmp + '/templates/data/*.json', config.theme + '/templates/data/*.json']);
