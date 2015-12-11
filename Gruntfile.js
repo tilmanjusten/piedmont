@@ -2,7 +2,7 @@
 
 var grunt = require('grunt');
 
-var config = grunt.readJSON(grunt.option('configFile'));
+var config = grunt.file.readJSON(grunt.option('configFile'));
 
 grunt.initConfig({
 
@@ -11,33 +11,33 @@ grunt.initConfig({
             flatten: true,
             assets: config.theme + 'assets/',
             helpers: [
-                config.theme + 'templates/helpers/*.js',
+                config.theme + '/templates/helpers/*.js',
                 'handlebars-helpers'
             ],
             partials: [
-                config.theme + 'templates/partials/**/*.hbs',
-                config.tmp + 'templates/partials/**/*.hbs'
+                config.theme + '/templates/partials/**/*.hbs',
+                config.base + '/templates/partials/**/*.hbs'
             ],
             layout: 'default.hbs',
-            layoutdir: config.theme + 'templates/layouts',
+            layoutdir: config.theme + '/templates/layouts',
             data: [
-                config.theme + 'templates/data/*.{json,yml}',
-                config.tmp + 'templates/data/*.{json,yml}'
+                config.theme + '/templates/data/*.{json,yml}',
+                config.base + '/templates/data/*.{json,yml}'
             ]
         },
 
         inventory: {
             files: [{
                 expand: true,
-                cwd: config.theme + 'templates/pages/',
+                cwd: config.theme + '/templates/pages/',
                 src: '**/*.hbs',
-                dest: './dist',
+                dest: config.base + '/dest',
                 flatten: true
             }, {
                 expand: true,
-                cwd: config.tmp + 'templates/pages/',
+                cwd: config.base + '/templates/pages/',
                 src: '**/*.hbs',
-                dest: './dist',
+                dest: config.base + '/dest',
                 flatten: true
             }]
         }
@@ -47,12 +47,12 @@ grunt.initConfig({
         inventory: {
             options: {
                 expand: true,
-                destData: config.tmp + 'templates/data/inventory.json',
-                destPartials: config.tmp + 'partials/',
-                template: config.theme + 'templates/interface-inventory.template.hbs',
-                storage: config.tmp + 'data/extracted-partials.json',
+                destData: config.base + '/templates/data/inventory.json',
+                destPartials: config.base + '/partials/',
+                template: config.theme + '/templates/interface-inventory.template.hbs',
+                storage: config.base + '/data/extracted-partials.json',
                 dest: {
-                    path: config.tmp + 'templates/pages/',
+                    path: config.base + '/templates/pages/',
                     filename: 'interface-inventory',
                     ext: '.hbs',
                     productionExt: '.html'
@@ -69,7 +69,7 @@ grunt.initConfig({
                 expand: true,
                 dot: false,
                 cwd: config.theme,
-                dest: config.dest,
+                dest: config.base + '/dest',
                 src: [
                     'css/**',
                     'fonts/**',
@@ -85,7 +85,7 @@ grunt.initConfig({
             files: [{
                 expand: true,
                 cwd: config.src,
-                dest: config.dest + 'assets/',
+                dest: '.tmp/dest/assets/',
                 src: [
                     '**/*',
                     '!*.html'
@@ -98,8 +98,8 @@ grunt.initConfig({
         inventory: {
             options: {
                 force: true,
-                base: config.tmp,
-                storage: config.tmp + 'data/extracted-partials.json',
+                base: config.base,
+                storage: '.tmp/data/extracted-partials.json',
                 //partialWrap: false,
                 //flatten: true,
                 storePartials: false,

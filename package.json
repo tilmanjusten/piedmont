@@ -14,12 +14,12 @@
   "license": "MIT",
   "dependencies": {
     "assemble": "^0.4.42",
+    "fs-extra": "^0.26.2",
     "glob": "^6.0.1",
     "grunt": "^0.4.5",
     "grunt-component-inventory": "^0.4.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-partial-extract": "^0.4.0",
-    "mkdirp": "^0.5.1",
     "scss-comment-parser": "git@github.com:tilmanjusten/scss-comment-parser.git"
   }
 }
