@@ -9,6 +9,7 @@ var StylesheetParser = require('./lib/stylesheet_parser'),
     path = require('path'),
     assemble = require('assemble'),
     extname = require('gulp-extname'),
+    process = require('process'),
     vfs = require('vinyl-fs'),
     glob = require('glob');
 
@@ -51,6 +52,7 @@ module.exports = function (_options) {
     // Empty temp and dest folder
     fs.emptyDirSync(config.tmp);
     fs.emptyDirSync(config.dest);
+    fs.ensureDirSync(config.tmp + '/templates/data');
 
     // Extract partials and build component inventory
     var extract = new PartialExtract(glob.sync(config.src + '/*.html'), {
@@ -66,13 +68,14 @@ module.exports = function (_options) {
     var components = new ComponentInventory({
         expand: true,
         storage: config.tmp + '/interface-inventory.json',
-        destData: config.tmp + '/templates/data/inventory-sections.json',
+        destData: config.tmp + '/templates/data/inventory.json',
         dest: {
             path: config.tmp + '/templates/pages',
             filename: 'component-inventory',
             ext: '.hbs',
             productionExt: '.html'
-        }
+        },
+        template: config.theme + '/templates/interface-inventory.template.hbs'
     });
 
     // Make Styleguide
@@ -84,17 +87,22 @@ module.exports = function (_options) {
     //parser.write('./build/data/styleguide.json');
 
     // Create styleguide as json that will be used when the templates will be built with assemble
-    fs.ensureDirSync(config.tmp + '/templates/data');
     preparator.create(styleguide, config.tmp + '/templates/data/styleguide.json');
 
     // Build templates
-    //exec('grunt template --configFile=' + config.configFile);
+    //assemble.pages([config.tmp + 'templates/pages/*.hbs', config.theme + '/templates/pages/*.hbs']);
+    assemble.partials(config.theme + '/templates/partials/**/*.hbs');
+    assemble.layouts(config.theme + '/templates/layouts/*.hbs');
+    assemble.data([config.tmp + '/templates/data/*.json', config.theme + '/templates/data/*.json']);
+    assemble.src([config.tmp + '/templates/pages/*.hbs', config.theme + '/templates/pages/*.hbs'])
+        .pipe(extname())
+        .pipe(assemble.dest(config.dest));
 
     // Theme assets
-    vfs.src('**/*.css', {cwd: config.theme + '/css'}).pipe(vfs.dest(config.dest + '/css' ));
-    vfs.src('**/*',     {cwd: config.theme + '/fonts'}).pipe(vfs.dest(config.dest + '/fonts'));
-    vfs.src('**/*',     {cwd: config.theme + '/img'}).pipe(vfs.dest(config.dest + '/img'));
-    vfs.src('**/*.js',  {cwd: config.theme + '/js'}).pipe(vfs.dest(config.dest + '/js'));
+    vfs.src('**/*.css', {cwd: config.theme + '/css'}).pipe(     vfs.dest(config.dest + '/css' ));
+    vfs.src('**/*',     {cwd: config.theme + '/fonts'}).pipe(   vfs.dest(config.dest + '/fonts'));
+    vfs.src('**/*',     {cwd: config.theme + '/img'}).pipe(     vfs.dest(config.dest + '/img'));
+    vfs.src('**/*.js',  {cwd: config.theme + '/js'}).pipe(      vfs.dest(config.dest + '/js'));
 
     // Inventory assets
     vfs.src(['**/*', '!*.html'], {cwd: config.src}).pipe(vfs.dest(config.dest + '/assets'));
