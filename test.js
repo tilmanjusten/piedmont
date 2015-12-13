@@ -1,9 +1,9 @@
 'use strict';
 
-var Piedmont = require('./index');
+var piedmont = require('./index');
 
 try {
-    new Piedmont();
+    piedmont();
 } catch (err) {
     console.log(err);
 }

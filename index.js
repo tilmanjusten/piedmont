@@ -1,19 +1,45 @@
 'use strict';
 
-var StylesheetParser = require('./lib/stylesheet_parser'),
-    PrepareStyleguide = require('./lib/prepare_styleguide'),
-    ComponentInventory = require('component-inventory'),
-    PartialExtract = require('partial-extract'),
+var stylesheetParser = require('./lib/stylesheet-parser'),
+    prepareStyleguide = require('./lib/prepare-styleguide'),
+    componentInventory = require('component-inventory'),
+    partialExtract = require('partial-extract'),
     _ = require('lodash'),
     fs = require('fs-extra'),
     path = require('path'),
     assemble = require('assemble'),
     extname = require('gulp-extname'),
-    process = require('process'),
-    vfs = require('vinyl-fs'),
     glob = require('glob');
 
-var options = {
+module.exports = pm;
+
+function pm(options, callback) {
+    options = typeof options === 'object' ? options : {};
+    callback = typeof callback === 'function' ? callback : noop;
+
+    var piedmont = new Piedmont(options);
+
+    piedmont.create(callback);
+}
+
+function noop() {
+
+}
+
+var Piedmont = function(options) {
+    this.options = _.assign(this.defaultOptions, options);
+
+    this.options.dest = path.resolve(this.options.cwd, this.options.dest);
+    this.options.src = path.resolve(this.options.cwd, this.options.src);
+    this.options.styles = path.resolve(this.options.cwd, this.options.styles);
+
+    // Empty temp and dest folder
+    fs.emptyDirSync(this.options.tmp);
+    fs.emptyDirSync(this.options.dest);
+    fs.ensureDirSync(this.options.tmp + '/templates/data');
+};
+
+Piedmont.prototype.defaultOptions = {
     theme: path.resolve(__dirname, 'theme/default'),
     tmp: path.resolve(__dirname, '.tmp'),
 
@@ -23,86 +49,96 @@ var options = {
     styles: 'test/fixtures/styles'
 };
 
-module.exports = function (_options) {
-    var config = _.assign(options, _options);
-    
-    config.dest = path.resolve(config.cwd, config.dest);
-    config.src = path.resolve(config.cwd, config.src);
-    config.styles = path.resolve(config.cwd, config.styles);
-
-    // Process
-    // - copy source files to .tmp folder where the files are available in grunt workflow
-    // - extract partials
-    //      - from html files in .tmp/build/*.html
-    //      - store in .tmp/data/extracted-partials.json
-    // - build component inventory
-    //      - use database in .tmp/data/extracted-partials.json
-    //      - store data in .tmp/data/inventory.json
-    //      - store section templates in .tmp/build/templates/pages/
-    //      - store partials in .tmp/partials/
-    // - make styleguide
-    //      - parse scss files in .tmp/styles
-    // - build templates
-    //      - use assemble to build templates from theme/default/templates/ and .tmp/templates/
-    //      - use data from theme/default/templates/data and .tmp/templates/data
-    // - assets
-    //      - copy theme assets (css/, js/, fonts/, img/, assets/ for now) to .tmp/dest/. Maybe we need to add a manifest file
-    //      - copy assets of the frontend prototype to .tmp/dest/assets/
-
-    // Empty temp and dest folder
-    fs.emptyDirSync(config.tmp);
-    fs.emptyDirSync(config.dest);
-    fs.ensureDirSync(config.tmp + '/templates/data');
+Piedmont.prototype.inventory = function () {
+    var options = this.options,
+        ci;
 
     // Extract partials and build component inventory
-    var extract = new PartialExtract(glob.sync(config.src + '/*.html'), {
+    partialExtract(glob.sync(options.src + '/*.html'), {
         force: true,
-        base: config.dest,
-        storage: config.tmp + '/interface-inventory.json',
+        base: options.dest,
+        storage: false,
         //partialWrap: false,
         //flatten: true,
         storePartials: false,
         partials: 'partials/'
+    }, function (err, inventory) {
+        ci = componentInventory({
+            expand: true,
+            storage: inventory,
+            destData: options.tmp + '/templates/data/inventory.json',
+            dest: {
+                path: options.tmp + '/templates/pages',
+                filename: 'component-inventory',
+                ext: '.hbs',
+                productionExt: '.html'
+            },
+            template: options.theme + '/templates/interface-inventory.template.hbs'
+        });
+
+        ci.create();
     });
 
-    var components = new ComponentInventory({
-        expand: true,
-        storage: config.tmp + '/interface-inventory.json',
-        destData: config.tmp + '/templates/data/inventory.json',
-        dest: {
-            path: config.tmp + '/templates/pages',
-            filename: 'component-inventory',
-            ext: '.hbs',
-            productionExt: '.html'
-        },
-        template: config.theme + '/templates/interface-inventory.template.hbs'
-    });
+};
+
+Piedmont.prototype.styleguide = function () {
+    var dest = this.options.tmp + '/templates/data/styleguide.json';
 
     // Make Styleguide
-    var parser = new StylesheetParser(),
-        preparator = new PrepareStyleguide(),
-        styleguide = parser.parse(config.styles + '/**/*.scss');
+    stylesheetParser(this.options.styles + '/**/*.scss', function (err, styleguide) {
+        // Create styleguide as json that will be used when the templates will be built with assemble
+        prepareStyleguide(styleguide, dest);
+    });
+};
 
-    // maybe we don't need to store the extracted styleguide data on the file system
-    //parser.write('./build/data/styleguide.json');
-
-    // Create styleguide as json that will be used when the templates will be built with assemble
-    preparator.create(styleguide, config.tmp + '/templates/data/styleguide.json');
-
+Piedmont.prototype.templates = function () {
     // Build templates
-    assemble.partials(config.theme + '/templates/partials/**/*.hbs');
-    assemble.layouts(config.theme + '/templates/layouts/*.hbs');
-    assemble.data([config.tmp + '/templates/data/*.json', config.theme + '/templates/data/*.json']);
-    assemble.src([config.tmp + '/templates/pages/*.hbs', config.theme + '/templates/pages/*.hbs'])
+    assemble.partials(this.options.theme + '/templates/partials/**/*.hbs');
+    assemble.layouts(this.options.theme + '/templates/layouts/*.hbs');
+    assemble.data([this.options.tmp + '/templates/data/*.json', this.options.theme + '/templates/data/*.json']);
+    assemble.src([this.options.tmp + '/templates/pages/*.hbs', this.options.theme + '/templates/pages/*.hbs'])
         .pipe(extname())
-        .pipe(assemble.dest(config.dest));
+        .pipe(assemble.dest(this.options.dest));
+};
 
-    // Theme assets
-    vfs.src('**/*.css', {cwd: config.theme + '/css'}).pipe(     vfs.dest(config.dest + '/css' ));
-    vfs.src('**/*',     {cwd: config.theme + '/fonts'}).pipe(   vfs.dest(config.dest + '/fonts'));
-    vfs.src('**/*',     {cwd: config.theme + '/img'}).pipe(     vfs.dest(config.dest + '/img'));
-    vfs.src('**/*.js',  {cwd: config.theme + '/js'}).pipe(      vfs.dest(config.dest + '/js'));
+Piedmont.prototype.assets = function () {
+    var options = this.options;
+
+    fs.access(this.options.theme + '/css', function (err) {
+        if (err) return;
+        fs.copySync(options.theme + '/css', options.dest + '/css');
+    });
+
+    fs.access(this.options.theme + '/fonts', function (err) {
+        if (err) return;
+        fs.copySync(options.theme + '/fonts', options.dest + '/fonts');
+    });
+
+    fs.access(this.options.theme + '/img', function (err) {
+        if (err) return;
+        fs.copySync(options.theme + '/img', options.dest + '/img');
+    });
+
+    fs.access(this.options.theme + '/js', function (err) {
+        if (err) return;
+        fs.copySync(options.theme + '/js', options.dest + '/js');
+    });
 
     // Inventory assets
-    vfs.src(['**/*', '!*.html'], {cwd: config.src}).pipe(vfs.dest(config.dest + '/assets'));
+    //vfs.src(['**/*', '!*.html'], {cwd: this.options.src}).pipe(vfs.dest(this.options.dest + '/assets'));
+    fs.copySync(this.options.src, this.options.dest + '/assets');
+};
+
+Piedmont.prototype.create = function (callback) {
+    callback = typeof callback === 'function' ? callback : noop;
+
+    this.assets();
+    this.styleguide();
+    this.inventory();
+    this.templates();
+
+    // Wait for the files in assets() and templates() to be written, seems to be kind of async
+    setTimeout(function () {
+        callback(null, null);
+    }, 2000);
 };
