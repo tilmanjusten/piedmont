@@ -86,7 +86,7 @@ Piedmont.prototype.styleguide = function () {
 
     // Make Styleguide
     stylesheetParser(this.options.styles + '/**/*.scss', function (err, styleguide) {
-        // Create styleguide as json that will be used when the templates will be built with assemble
+        // Create styleguide as json that will be used by assemble for building the templates
         prepareStyleguide(styleguide, dest);
     });
 };
@@ -125,7 +125,6 @@ Piedmont.prototype.assets = function () {
     });
 
     // Inventory assets
-    //vfs.src(['**/*', '!*.html'], {cwd: this.options.src}).pipe(vfs.dest(this.options.dest + '/assets'));
     fs.copySync(this.options.src, this.options.dest + '/assets');
 };
 
