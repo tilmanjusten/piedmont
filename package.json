@@ -18,7 +18,7 @@
     "fs-extra": "^0.26.2",
     "glob": "^6.0.1",
     "gulp-extname": "^0.2.0",
-    "scss-comment-parser": "git@github.com:tilmanjusten/scss-comment-parser.git"
     "partial-extract": "^0.0.1",
+    "scss-comment-parser": "^0.8.0"
   }
 }
