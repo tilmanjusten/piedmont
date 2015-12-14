@@ -14,11 +14,11 @@
   "license": "MIT",
   "dependencies": {
     "assemble": "^0.6.0-beta.5",
-    "component-inventory": "^0.0.1",
+    "component-inventory": "^0.0.2",
     "fs-extra": "^0.26.2",
     "glob": "^6.0.1",
     "gulp-extname": "^0.2.0",
-    "partial-extract": "^0.0.1",
+    "partial-extract": "^0.0.2",
     "scss-comment-parser": "^0.8.0"
   }
 }
