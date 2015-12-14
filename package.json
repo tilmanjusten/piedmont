@@ -14,11 +14,11 @@
   "license": "MIT",
   "dependencies": {
     "assemble": "^0.6.0-beta.5",
-    "component-inventory": "/Users/tilman/Sites/grunt-plugins/component-inventory",
+    "component-inventory": "^0.0.1",
     "fs-extra": "^0.26.2",
     "glob": "^6.0.1",
     "gulp-extname": "^0.2.0",
-    "partial-extract": "/Users/tilman/Sites/grunt-plugins/partial-extract",
     "scss-comment-parser": "git@github.com:tilmanjusten/scss-comment-parser.git"
+    "partial-extract": "^0.0.1",
   }
 }
