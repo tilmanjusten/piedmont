@@ -173,8 +173,8 @@ if the value is an expression or the value is not a digestable CSS property
 value. 
 
 ```scss
-// @color Overlay background  
-// @value rgba(0, 0, 0, 0.6)  
+/// @color Overlay background  
+/// @value rgba(0, 0, 0, 0.6)  
 $transparent-dark: transparentize($dark, 0.4);  
 ```
 
@@ -183,7 +183,7 @@ $transparent-dark: transparentize($dark, 0.4);
 #### `@boxShadow`
 
 ```scss
-// @boxShadow Dropshadow  
+/// @boxShadow Dropshadow  
 $dropshadow: 1px 2px 9px rgba(30, 30, 30, 0.3);   
 ```
 
@@ -193,8 +193,8 @@ Color value. Use the optional `@group` to group colors. Groups might be Main,
 Decoration, Notice, Buttons, Transparencies, etc.
 
 ```scss
-// @color Primary
-// @group Main
+/// @color Primary
+/// @group Main
 $color-primary: rebeccapurple;   
 ```
 
@@ -203,10 +203,10 @@ $color-primary: rebeccapurple;
 Single font name. Use `@fontWeight` to specify the available font weights.
 
 ```scss
-// @font FFDin
-// @fontWeight 300
-// @fontWeight 400
-// @fontWeight 700
+/// @font FFDin
+/// @fontWeight 300
+/// @fontWeight 400
+/// @fontWeight 700
 $font-ffdin: FFDin;   
 ```
 
@@ -215,7 +215,7 @@ $font-ffdin: FFDin;
 Font family cascade.
 
 ```scss
-// @fontFamily Headline
+/// @fontFamily Headline
 $font-family: Times, "Times New Roman", serif;   
 ```
 
@@ -224,7 +224,7 @@ $font-family: Times, "Times New Roman", serif;
 Font size value.
 
 ```scss
-// @fontSize Small
+/// @fontSize Small
 $font-size-meta: 1.4rem;
 ```
 
@@ -233,7 +233,7 @@ $font-size-meta: 1.4rem;
 Gradient type is specified in `@type`. Valid values are `linear` and `radial`.
 
 ```scss
-// @gradient Purple fade
+/// @gradient Purple fade
 $gradient-purple: linear-gradient(to bottom, rgba(102,51,153,1) 12%,rgba(102,51,153,0.5) 54%,rgba(222,71,172,0) 100%);
 ```
 
@@ -242,7 +242,7 @@ $gradient-purple: linear-gradient(to bottom, rgba(102,51,153,1) 12%,rgba(102,51,
 Line height value.
 
 ```scss
-// @lineHeight Base
+/// @lineHeight Base
 $base-line-height: 1.5;
 ```
 
@@ -252,8 +252,8 @@ Spacing value. Use the optional `@group` to group spacings. Groups might be
 Layout, Component, Form, etc.
 
 ```scss
-// @spacing Base
-// @group Layout
+/// @spacing Base
+/// @group Layout
 $spacing-layout: 2rem;   
 ```
 
@@ -262,7 +262,7 @@ $spacing-layout: 2rem;
 Duration of animations and transitions.
 
 ```scss
-// @timing Sluggish
+/// @timing Sluggish
 $duration-sluggish: 1.4s;
 ```
 
@@ -271,8 +271,8 @@ $duration-sluggish: 1.4s;
 Transition value.
 
 ```scss
-// @transition Fade
-// @value opacity 0.6s 0s ease
+/// @transition Fade
+/// @value opacity 0.6s 0s ease
 $transition-fade: opacity $duration-slow 0s ease;
 ```
 
