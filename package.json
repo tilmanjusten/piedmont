@@ -1,6 +1,6 @@
 {
   "name": "piedmont",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Creates Living Styleguide from Frontend Prototype and its Source Files.",
   "main": "index.js",
   "scripts": {
