@@ -31,6 +31,12 @@
                             {{/each}}
                         </ul>
                     </li>
+
+                    {{#each docs.items}}
+                        <li>
+                            <a href="{{this.filename}}.html">{{this.name}}</a>
+                        </li>
+                    {{/each}}
                 </ul>
             </nav>
 

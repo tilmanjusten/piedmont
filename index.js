@@ -34,7 +34,7 @@ var Piedmont = function(options) {
     this.options.src = path.resolve(this.options.cwd, this.options.src);
     this.options.styles = path.resolve(this.options.cwd, this.options.styles);
 
-    // Empty temp and dest folder
+    // Empty temp and dest folder and ensure they exist
     fs.emptyDirSync(this.options.tmp);
     fs.emptyDirSync(this.options.dest);
     fs.ensureDirSync(this.options.tmp + '/templates/data');
@@ -134,9 +134,13 @@ Piedmont.prototype.assets = function () {
 Piedmont.prototype.docs = function () {
     var dest = this.options.tmp + '/templates/pages',
         srcPattern = this.options.docs + '/**/*.md',
-        docTemplateSrc = this.options.theme + '/templates/doc.template.hbs';
+        docTemplateSrc = this.options.theme + '/templates/doc.template.hbs',
+        pages;
 
-    prepareDocs(srcPattern, dest, docTemplateSrc);
+    // build page templates from markdown documents
+    pages = prepareDocs(srcPattern, dest, docTemplateSrc);
+
+    fs.writeJsonSync(this.options.tmp + '/templates/data/docs.json', {items: pages});
 };
 
 Piedmont.prototype.create = function (callback) {
