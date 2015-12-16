@@ -2,6 +2,7 @@
 
 var stylesheetParser = require('./lib/stylesheet-parser'),
     prepareStyleguide = require('./lib/prepare-styleguide'),
+    prepareDocs = require('./lib/docs'),
     componentInventory = require('component-inventory'),
     partialExtract = require('partial-extract'),
     _ = require('lodash'),
@@ -37,6 +38,7 @@ var Piedmont = function(options) {
     fs.emptyDirSync(this.options.tmp);
     fs.emptyDirSync(this.options.dest);
     fs.ensureDirSync(this.options.tmp + '/templates/data');
+    fs.ensureDirSync(this.options.tmp + '/templates/pages');
 };
 
 Piedmont.prototype.defaultOptions = {
@@ -46,7 +48,8 @@ Piedmont.prototype.defaultOptions = {
     cwd: __dirname,
     dest: 'test/result/styling-guidelines',
     src: 'test/fixtures/build',
-    styles: 'test/fixtures/styles'
+    styles: 'test/fixtures/styles',
+    docs: 'test/fixtures/doc'
 };
 
 Piedmont.prototype.inventory = function () {
@@ -128,12 +131,21 @@ Piedmont.prototype.assets = function () {
     fs.copySync(this.options.src, this.options.dest + '/assets');
 };
 
+Piedmont.prototype.docs = function () {
+    var dest = this.options.tmp + '/templates/pages',
+        srcPattern = this.options.docs + '/**/*.md',
+        docTemplateSrc = this.options.theme + '/templates/doc.template.hbs';
+
+    prepareDocs(srcPattern, dest, docTemplateSrc);
+};
+
 Piedmont.prototype.create = function (callback) {
     callback = typeof callback === 'function' ? callback : noop;
 
     this.assets();
     this.styleguide();
     this.inventory();
+    this.docs();
     this.templates();
 
     // Wait for the files in assets() and templates() to be written, seems to be kind of async
