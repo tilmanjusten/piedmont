@@ -32,6 +32,15 @@ Default value: `'./test/result/styling-guidelines'`
 
 Destination path of the generated living styleguide. Path is relative to `cwd`.
 
+### `docs`
+Type: `String`
+Default value: `./test/fixtures/docs`
+
+Source path of markdown files that will be parsed and converted to content pages. Piedmont uses a 
+[glob pattern](https://www.npmjs.com/package/glob) to get the files: `./test/fixtures/docs/*.md`.
+
+Path is relative to `cwd`. See the [Documents section for further details.](#documents)
+
 ### `src`
 Type: `String`
 Default value: `'./test/fixtures/build'`
@@ -274,6 +283,42 @@ Transition value.
 /// @transition Fade
 /// @value opacity 0.6s 0s ease
 $transition-fade: opacity $duration-slow 0s ease;
+```
+
+## Documents
+
+Additional pages besides styleguide and component inventory will be created based on markdown files in the `docs` 
+directory. The markdown documents will be converted to HTML via [marked](https://github.com/chjj/marked). These files 
+will be converted to [handlebars templates](http://handlebarsjs.com) digestable by [Assemble](http://assemble.io).
+While Piedmont does some parsing, you can override the poster data of the handlebars page template right in the 
+markdown document. Possible values are
+ 
+* `title`: Document title and navigation label
+* `class`: Classname of the `<body>`
+* `parent`: Set another document as parent. The value equals the parents filename without extension.
+
+An example of a poster is shown below. Assume the following page structure.
+ 
+```
+docs/
+- engines.md
+- rocket.md
+- steam.md
+```
+
+The content of `docs/rocket.md` looks like:  
+
+```md
+
+---
+title: Rockets are looking for the stars
+class: 
+parent: engines
+---
+
+# Those Rockets Are Looking For The Stars
+
+...
 ```
 
 ## Release History
