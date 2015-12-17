@@ -49,7 +49,7 @@ Piedmont.prototype.defaultOptions = {
     dest: 'test/result/styling-guidelines',
     src: 'test/fixtures/build',
     styles: 'test/fixtures/styles',
-    docs: 'test/fixtures/doc'
+    docs: 'test/fixtures/docs'
 };
 
 Piedmont.prototype.inventory = function () {
