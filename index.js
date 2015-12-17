@@ -81,7 +81,6 @@ Piedmont.prototype.inventory = function () {
 
         ci.create();
     });
-
 };
 
 Piedmont.prototype.styleguide = function () {
@@ -133,14 +132,16 @@ Piedmont.prototype.assets = function () {
 
 Piedmont.prototype.docs = function () {
     var dest = this.options.tmp + '/templates/pages',
-        srcPattern = this.options.docs + '/**/*.md',
+        srcPattern = this.options.docs + '/*.md',
         docTemplateSrc = this.options.theme + '/templates/doc.template.hbs',
         pages;
 
     // build page templates from markdown documents
     pages = prepareDocs(srcPattern, dest, docTemplateSrc);
 
-    fs.writeJsonSync(this.options.tmp + '/templates/data/docs.json', {items: pages});
+    if (pages) {
+        fs.writeJsonSync(this.options.tmp + '/templates/data/docs.json', {items: pages});
+    }
 };
 
 Piedmont.prototype.create = function (callback) {
