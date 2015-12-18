@@ -1,0 +1,12 @@
+/// @component Button (has example)
+/// @example <button class="button-light">Button</button>
+.button-light {
+  background: white;
+  border: thin solid currentColor;
+  border-radius: 3px;
+  color: purple;
+  font-size: 1em;
+  min-width: 15ex;
+  outline: 0;
+  padding: 0.5em 1em;
+}

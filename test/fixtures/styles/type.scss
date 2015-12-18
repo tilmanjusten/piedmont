@@ -1,0 +1,8 @@
+/// @gradient Read more
+/// @value linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95)
+/// @type linear
+$gradient: linear-gradient(to bottom, transparentize($white, 1) 0%, $white 95%);
+
+/// @gradient Pink
+/// @type radial
+$gradient: radial-gradient(ellipse at center, rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%);

@@ -1,0 +1,41 @@
+/// @color White
+$white: #fff;
+/// @color Black
+$black: #000;
+
+/// @color Light
+$light: $white;
+/// @color Dark
+$dark: #42474b;
+/// @color Grey
+$grey: #9da0a2;
+
+/// @color Turquoise
+/// @group Primary
+$turquoise: #45d0e4;
+
+/// @color Turquoise Contrast
+/// @group Primary
+/// @value #1fc0d7
+$turquoise-contrast: darken($turquoise, 10%);
+
+/// @color Brown
+/// @group Primary
+$brown: #e4af58;
+
+/// @color Brown Contrast
+/// @group Primary
+/// @value #dd9a2c;
+$brown-contrast: darken($brown, 10%);
+
+/// @color Purple
+/// @group Secondary
+$purple: rebeccapurple;
+
+/// @color Raspberry
+/// @group Secondary
+$raspberry: #992651;
+
+/// @color Lemon
+/// @group Secondary
+$lemon: #8fb649;

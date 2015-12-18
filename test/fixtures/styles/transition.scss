@@ -1,0 +1,7 @@
+/// @transition Linear slow
+/// @transition all 0.7s 0s linear
+$linear-slow: 0.7s 0s linear;
+
+/// @transition Ease
+/// @value all 0.3s 0s ease
+$ease: #{$normal} 0s ease;

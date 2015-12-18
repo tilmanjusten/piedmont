@@ -1,8 +1,5 @@
 *.log
 npm-debug.log*
 node_modules
-inventory
 dist
-example
-test
 .tmp

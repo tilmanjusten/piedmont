@@ -1,0 +1,29 @@
+:root,
+html {
+    font-size: 62.5%;
+    line-height: 1.5;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222;
+}
+
+.test-component {
+    max-width: 640px;
+}
+
+.test-component__title {
+    color: rebeccapurple;
+    margin-bottom: 0.5em;
+}
+
+.test-component p {
+    margin-top: 0;
+}
+
+code {
+    background: #e0e1e8;
+    padding: 0.1em 0.2em;
+}
