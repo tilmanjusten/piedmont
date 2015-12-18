@@ -1,0 +1,1045 @@
+{
+  "borderRadius": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "border-radius",
+        "value": "3px",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "borderRadius": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "edgy",
+        "value": "1px",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "borderRadius": "Edgy"
+    }
+  ],
+  "boxShadow": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "afternoon",
+        "value": "-6px 3px 5px rgba(0, 0, 0, 0.6)",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "boxShadow": "Afternoon"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 5
+      },
+      "context": {
+        "type": "variable",
+        "name": "dropshadow",
+        "value": "0 0 10px transparentize($dark, 0.8)",
+        "scope": "private",
+        "line": {
+          "start": 6,
+          "end": 6
+        }
+      },
+      "boxShadow": "Dropshadow",
+      "value": "0 0 10px rgba(45, 50, 54, 0.2);"
+    }
+  ],
+  "color": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "white",
+        "value": "#fff",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "color": "White"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 3,
+        "end": 3
+      },
+      "context": {
+        "type": "variable",
+        "name": "black",
+        "value": "#000",
+        "scope": "private",
+        "line": {
+          "start": 4,
+          "end": 4
+        }
+      },
+      "color": "Black"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 6,
+        "end": 6
+      },
+      "context": {
+        "type": "variable",
+        "name": "light",
+        "value": "$white",
+        "scope": "private",
+        "line": {
+          "start": 7,
+          "end": 7
+        }
+      },
+      "color": "Light"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 8,
+        "end": 8
+      },
+      "context": {
+        "type": "variable",
+        "name": "dark",
+        "value": "#42474b",
+        "scope": "private",
+        "line": {
+          "start": 9,
+          "end": 9
+        }
+      },
+      "color": "Dark"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 10,
+        "end": 10
+      },
+      "context": {
+        "type": "variable",
+        "name": "grey",
+        "value": "#9da0a2",
+        "scope": "private",
+        "line": {
+          "start": 11,
+          "end": 11
+        }
+      },
+      "color": "Grey"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 13,
+        "end": 14
+      },
+      "context": {
+        "type": "variable",
+        "name": "turquoise",
+        "value": "#45d0e4",
+        "scope": "private",
+        "line": {
+          "start": 15,
+          "end": 15
+        }
+      },
+      "color": "Turquoise",
+      "group": "Primary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 17,
+        "end": 19
+      },
+      "context": {
+        "type": "variable",
+        "name": "turquoise-contrast",
+        "value": "darken($turquoise, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 20,
+          "end": 20
+        }
+      },
+      "color": "Turquoise Contrast",
+      "group": "Primary",
+      "value": "#1fc0d7"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 22,
+        "end": 23
+      },
+      "context": {
+        "type": "variable",
+        "name": "brown",
+        "value": "#e4af58",
+        "scope": "private",
+        "line": {
+          "start": 24,
+          "end": 24
+        }
+      },
+      "color": "Brown",
+      "group": "Primary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 26,
+        "end": 28
+      },
+      "context": {
+        "type": "variable",
+        "name": "brown-contrast",
+        "value": "darken($brown, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 29,
+          "end": 29
+        }
+      },
+      "color": "Brown Contrast",
+      "group": "Primary",
+      "value": "#dd9a2c;"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 31,
+        "end": 32
+      },
+      "context": {
+        "type": "variable",
+        "name": "purple",
+        "value": "rebeccapurple",
+        "scope": "private",
+        "line": {
+          "start": 33,
+          "end": 33
+        }
+      },
+      "color": "Purple",
+      "group": "Secondary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 35,
+        "end": 36
+      },
+      "context": {
+        "type": "variable",
+        "name": "raspberry",
+        "value": "#992651",
+        "scope": "private",
+        "line": {
+          "start": 37,
+          "end": 37
+        }
+      },
+      "color": "Raspberry",
+      "group": "Secondary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 39,
+        "end": 40
+      },
+      "context": {
+        "type": "variable",
+        "name": "lemon",
+        "value": "#8fb649",
+        "scope": "private",
+        "line": {
+          "start": 41,
+          "end": 41
+        }
+      },
+      "color": "Lemon",
+      "group": "Secondary"
+    }
+  ],
+  "component": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "css",
+        "name": "button,\ninput[type=submit],\ninput[type=reset]",
+        "value": "background: cornflowerblue;\n  border-radius: 2px;\n  border: 0;\n  color: white;\n  font-size: 1em;\n  min-width: 15ex;\n  outline: 0;\n  padding: 0.5em 1em;"
+      },
+      "component": "Button"
+    }
+  ],
+  "example": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 2
+      },
+      "context": {
+        "type": "css",
+        "name": ".button-light",
+        "value": "background: white;\n  border: thin solid currentColor;\n  border-radius: 3px;\n  color: purple;\n  font-size: 1em;\n  min-width: 15ex;\n  outline: 0;\n  padding: 0.5em 1em;"
+      },
+      "component": "Button (has example)",
+      "example": "<button class=\"button-light\">Button</button>"
+    }
+  ],
+  "font": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "theSans",
+        "value": "TheSans",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "font": "TheSans",
+      "fontWeight": [
+        "300",
+        "400",
+        "700"
+      ]
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 7,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "helveticaNeue",
+        "value": "\"Helvetica Neue\"",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "font": "Helvetica Neue"
+    }
+  ],
+  "fontFamily": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "font-stack",
+        "value": "Helvetica, Arial, sans-serif",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "fontFamily": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "font-stack-headline",
+        "value": "Times, sans-serif",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "fontFamily": "Headline"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 7,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "font-stack-monospace",
+        "value": "Monaco, Consolas, monospace",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "fontFamily": "Monospace"
+    }
+  ],
+  "fontSize": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "font-size",
+        "value": "16px",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "fontSize": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "font-size",
+        "value": "42px",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "fontSize": "Page Title"
+    }
+  ],
+  "fontStyle": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "normal",
+        "value": "normal",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "fontStyle": [
+        "Base"
+      ]
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "italic",
+        "value": "italic",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "fontStyle": [
+        "Italic"
+      ]
+    }
+  ],
+  "fontWeight": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "light",
+        "value": "300",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "fontWeight": [
+        "Light"
+      ]
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 5
+      },
+      "context": {
+        "type": "variable",
+        "name": "light",
+        "value": "400",
+        "scope": "private",
+        "line": {
+          "start": 6,
+          "end": 6
+        }
+      },
+      "fontWeight": [
+        "Default"
+      ],
+      "value": "normal"
+    }
+  ],
+  "gradient": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 2
+      },
+      "context": {
+        "type": "variable",
+        "name": "gradient",
+        "value": "linear-gradient(to bottom, transparentize($white, 1) 0%, $white 95%)",
+        "scope": "private",
+        "line": {
+          "start": 3,
+          "end": 3
+        }
+      },
+      "gradient": "Read more",
+      "value": "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95)"
+    }
+  ],
+  "group": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 2
+      },
+      "context": {
+        "type": "variable",
+        "name": "turquoise",
+        "value": "#45d0e4",
+        "scope": "private",
+        "line": {
+          "start": 3,
+          "end": 3
+        }
+      },
+      "color": "Turquoise",
+      "group": "Primary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 5,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "turquoise-contrast",
+        "value": "darken($turquoise, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "color": "Turquoise Contrast",
+      "group": "Primary",
+      "value": "#1fc0d7"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 10,
+        "end": 11
+      },
+      "context": {
+        "type": "variable",
+        "name": "brown",
+        "value": "#e4af58",
+        "scope": "private",
+        "line": {
+          "start": 12,
+          "end": 12
+        }
+      },
+      "color": "Brown",
+      "group": "Primary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 14,
+        "end": 16
+      },
+      "context": {
+        "type": "variable",
+        "name": "brown-contrast",
+        "value": "darken($brown, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 17,
+          "end": 17
+        }
+      },
+      "color": "Brown Contrast",
+      "group": "Primary",
+      "value": "#dd9a2c;"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 19,
+        "end": 20
+      },
+      "context": {
+        "type": "variable",
+        "name": "purple",
+        "value": "rebeccapurple",
+        "scope": "private",
+        "line": {
+          "start": 21,
+          "end": 21
+        }
+      },
+      "color": "Purple",
+      "group": "Secondary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 23,
+        "end": 24
+      },
+      "context": {
+        "type": "variable",
+        "name": "raspberry",
+        "value": "#992651",
+        "scope": "private",
+        "line": {
+          "start": 25,
+          "end": 25
+        }
+      },
+      "color": "Raspberry",
+      "group": "Secondary"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 27,
+        "end": 28
+      },
+      "context": {
+        "type": "variable",
+        "name": "lemon",
+        "value": "#8fb649",
+        "scope": "private",
+        "line": {
+          "start": 29,
+          "end": 29
+        }
+      },
+      "color": "Lemon",
+      "group": "Secondary"
+    }
+  ],
+  "lineHeight": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "narrow",
+        "value": "1.0",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "lineHeight": "Tiny"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "default",
+        "value": "1.2",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "lineHeight": "Small"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 7,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "code",
+        "value": "1.6",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "lineHeight": "Base"
+    }
+  ],
+  "spacing": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "spacing",
+        "value": "22px",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "spacing": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "spacing-small",
+        "value": "14px",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "spacing": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 7,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "spacing-large",
+        "value": "33px",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "spacing": "Default"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 10,
+        "end": 11
+      },
+      "context": {
+        "type": "variable",
+        "name": "layout-spacing",
+        "value": "33px",
+        "scope": "private",
+        "line": {
+          "start": 12,
+          "end": 12
+        }
+      },
+      "spacing": "Default",
+      "group": "Layout"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 14,
+        "end": 15
+      },
+      "context": {
+        "type": "variable",
+        "name": "layout-spacing-small",
+        "value": "14px",
+        "scope": "private",
+        "line": {
+          "start": 16,
+          "end": 16
+        }
+      },
+      "spacing": "Default",
+      "group": "Layout"
+    }
+  ],
+  "timing": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 1
+      },
+      "context": {
+        "type": "variable",
+        "name": "fast",
+        "value": "0.1s",
+        "scope": "private",
+        "line": {
+          "start": 2,
+          "end": 2
+        }
+      },
+      "timing": "Fast"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 4,
+        "end": 4
+      },
+      "context": {
+        "type": "variable",
+        "name": "normal",
+        "value": "0.3s",
+        "scope": "private",
+        "line": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "timing": "Normal"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 7,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "sluggish",
+        "value": "1.2s",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "timing": "Sluggish"
+    }
+  ],
+  "transition": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 2
+      },
+      "context": {
+        "type": "variable",
+        "name": "linear-slow",
+        "value": "0.7s 0s linear",
+        "scope": "private",
+        "line": {
+          "start": 3,
+          "end": 3
+        }
+      },
+      "transition": "Linear slow"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 5,
+        "end": 6
+      },
+      "context": {
+        "type": "variable",
+        "name": "ease",
+        "value": "#{$normal} 0s ease",
+        "scope": "private",
+        "line": {
+          "start": 7,
+          "end": 7
+        }
+      },
+      "transition": "Ease",
+      "value": "all 0.3s 0s ease"
+    }
+  ],
+  "type": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 3
+      },
+      "context": {
+        "type": "variable",
+        "name": "gradient",
+        "value": "linear-gradient(to bottom, transparentize($white, 1) 0%, $white 95%)",
+        "scope": "private",
+        "line": {
+          "start": 4,
+          "end": 4
+        }
+      },
+      "gradient": "Read more",
+      "value": "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95)",
+      "type": "linear"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 6,
+        "end": 7
+      },
+      "context": {
+        "type": "variable",
+        "name": "gradient",
+        "value": "radial-gradient(ellipse at center, rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%)",
+        "scope": "private",
+        "line": {
+          "start": 8,
+          "end": 8
+        }
+      },
+      "gradient": "Pink",
+      "type": "radial"
+    }
+  ],
+  "value": [
+    {
+      "description": "",
+      "commentRange": {
+        "start": 1,
+        "end": 3
+      },
+      "context": {
+        "type": "variable",
+        "name": "turquoise-contrast",
+        "value": "darken($turquoise, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 4,
+          "end": 4
+        }
+      },
+      "color": "Turquoise Contrast",
+      "group": "Primary",
+      "value": "#1fc0d7"
+    },
+    {
+      "description": "",
+      "commentRange": {
+        "start": 6,
+        "end": 8
+      },
+      "context": {
+        "type": "variable",
+        "name": "brown-contrast",
+        "value": "darken($brown, 10%)",
+        "scope": "private",
+        "line": {
+          "start": 9,
+          "end": 9
+        }
+      },
+      "color": "Brown Contrast",
+      "group": "Primary",
+      "value": "#dd9a2c;"
+    }
+  ]
+}
