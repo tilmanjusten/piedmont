@@ -1,0 +1,38 @@
+<h1 id="code-blocks">Code blocks</h1>
+<p>»Es ist ein eigentümlicher Apparat«, sagte der Offizier zu dem Forschungsreisenden und überblickte mit einem 
+gewissermaßen bewundernden Blick den ihm doch wohlbekannten Apparat.</p>
+<h2 id="bash-shell">Bash/Shell</h2>
+<pre><code class="lang-bash">$ npm install piedmont --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>
+</code></pre>
+<pre><code class="lang-shell">$ npm <span class="hljs-selector-tag">i</span> -D piedmont
+</code></pre>
+<h2 id="javascript">Javascript</h2>
+<pre><code class="lang-javascript"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> glob = <span class="hljs-built_in">require</span>(<span class="hljs-string">'glob'</span>),
+    fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>),
+    path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>),
+    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parser'</span>),
+    Nomnom;
+
+Nomnom = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.comments = {};
+    <span class="hljs-keyword">this</span>.files = [];
+};
+
+Nomnom.prototype.parse = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">pattern</span>) </span>{
+    <span class="hljs-keyword">var</span> comments = {};
+    <span class="hljs-keyword">this</span>.files = glob.sync(pattern);
+
+    <span class="hljs-keyword">this</span>.files.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">absPath</span>) </span>{
+        <span class="hljs-keyword">var</span> fileContent = fs.readFileSync(absPath, <span class="hljs-string">'utf8'</span>),
+            relativePath = path.relative(<span class="hljs-string">'./'</span>, absPath);
+
+        comments[relativePath] = parser.parse(fileContent);
+    });
+
+    <span class="hljs-keyword">this</span>.comments = comments;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.comments;
+};
+</code></pre>
