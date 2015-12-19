@@ -574,7 +574,7 @@
         }
       },
       "gradient": "Read more",
-      "value": "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95)"
+      "value": "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95%)"
     }
   ],
   "group": [
@@ -964,27 +964,26 @@
       "description": "",
       "commentRange": {
         "start": 1,
-        "end": 3
+        "end": 2
       },
       "context": {
         "type": "variable",
         "name": "gradient",
-        "value": "linear-gradient(to bottom, transparentize($white, 1) 0%, $white 95%)",
+        "value": "linear-gradient(to bottom, rgba(255,93,177,0) 0%, rgba(239,1,124,0.75) 50%, purple 100%)",
         "scope": "private",
         "line": {
-          "start": 4,
-          "end": 4
+          "start": 3,
+          "end": 3
         }
       },
-      "gradient": "Read more",
-      "value": "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 95)",
+      "gradient": "Pinkpurple",
       "type": "linear"
     },
     {
       "description": "",
       "commentRange": {
-        "start": 6,
-        "end": 7
+        "start": 5,
+        "end": 6
       },
       "context": {
         "type": "variable",
@@ -992,8 +991,8 @@
         "value": "radial-gradient(ellipse at center, rgba(255,93,177,1) 0%,rgba(239,1,124,1) 100%)",
         "scope": "private",
         "line": {
-          "start": 8,
-          "end": 8
+          "start": 7,
+          "end": 7
         }
       },
       "gradient": "Pink",
