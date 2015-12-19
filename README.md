@@ -1,4 +1,5 @@
-# Piedmont
+Piedmont [![Build Status](https://travis-ci.org/tilmanjusten/piedmont.svg?branch=master)](https://travis-ci.org/tilmanjusten/piedmont)
+---
 
 > Generate a Living Styleguide based on a Frontend Prototype.
 
