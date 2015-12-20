@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require('fs-extra'),
-    path = require('path'),
+    resolve = require('path').resolve,
     expect = require('chai').expect,
     Doc = require('../../lib/docs/doc');
 
@@ -10,7 +10,7 @@ describe("Document", function () {
         content;
 
     before(function () {
-        content = fs.readFileSync(path.resolve(__dirname, '../fixtures/lib/doc.md'), 'utf8');
+        content = fs.readFileSync(resolve(__dirname, '../fixtures/lib/doc.md'), 'utf8');
     });
 
     beforeEach(function () {
@@ -19,7 +19,7 @@ describe("Document", function () {
 
     it('should parse full content and get poster and content', function () {
         var expectedContent = '\n\n# The content\n\n' +
-                'is not that extensively.',
+                'is not that extensive.',
             expectedPoster = '---\n' +
                 'title: Document example\n' +
                 'parent: examples\n' +
@@ -57,5 +57,25 @@ describe("Document", function () {
         doc.preparePosterData();
 
         expect(doc.posterData).to.deep.equal(expectedPosterData);
+    });
+
+    it('should substitue content in template', function () {
+        var expected = fs.readFileSync(resolve(__dirname, '../expectations/lib/doc-simple-template.html'), 'utf8'),
+            templateCode = fs.readFileSync(resolve(__dirname, '../fixtures/lib/doc-simple-template.html'), 'utf8');
+
+        doc.parseContent();
+        doc.setTemplate(templateCode);
+
+        expect(doc.make()).to.equal(expected);
+    });
+
+    it('should substitue content and poster in template', function () {
+        var expected = fs.readFileSync(resolve(__dirname, '../expectations/lib/doc-poster-template.html'), 'utf8'),
+            templateCode = fs.readFileSync(resolve(__dirname, '../fixtures/lib/doc-poster-template.html'), 'utf8');
+
+        doc.parseContent();
+        doc.setTemplate(templateCode);
+
+        expect(doc.make()).to.equal(expected);
     });
 });
