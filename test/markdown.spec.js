@@ -1,7 +1,7 @@
 'use strict';
 
 var markdown = require('../lib/docs/markdown'),
-    assert = require('assert'),
+    expect = require('chai').expect,
     fs = require('fs-extra');
 
 describe('Markdown', function () {
@@ -9,27 +9,27 @@ describe('Markdown', function () {
     describe('convert markdown to (higlighted) html', function () {
        it('should return html for markdown input', function () {
            var fixture = '# Headline\nThis is content',
-               expect = '<h1 id="headline">Headline</h1>\n<p>This is content</p>\n';
+               expectation = '<h1 id="headline">Headline</h1>\n<p>This is content</p>\n';
 
-           assert.equal(markdown.convert(fixture), expect);
+           expect(markdown.convert(fixture)).to.equal(expectation);
        });
 
         it('should highlight code blocks', function () {
             var fixture = fs.readFileSync(__dirname + '/fixtures/docs/code.md', 'utf8'),
-                expect = fs.readFileSync(__dirname + '/expectations/docs/code.html', 'utf8');
+                expectation = fs.readFileSync(__dirname + '/expectations/docs/code.html', 'utf8');
 
-            assert.equal(markdown.convert(fixture), expect);
+            expect(markdown.convert(fixture)).to.equal(expectation);
         });
     });
 
     describe('get poster data from content', function () {
         it('should extract title from first headline', function () {
             var fixture = fs.readFileSync(__dirname + '/fixtures/docs/poster-from-content.md', 'utf8'),
-                expect = {title: 'Get poster data from content'},
-                notExpect = {title: 'Subheadline'};
+                expectation = {title: 'Get poster data from content'},
+                falseExpectation = {title: 'Subheadline'};
 
-            assert.deepEqual(markdown.poster(fixture), expect);
-            assert.notEqual(markdown.poster(fixture), notExpect);
+            expect(markdown.poster(fixture)).to.deep.equal(expectation);
+            expect(markdown.poster(fixture)).to.not.equal(falseExpectation);
         });
     });
 });

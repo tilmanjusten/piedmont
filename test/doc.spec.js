@@ -1,7 +1,7 @@
 'use strict';
 
-var assert = require('assert'),
-    fs = require('fs-extra'),
+var fs = require('fs-extra'),
+    expect = require('chai').expect,
     Doc = require('../lib/docs/doc');
 
 describe("Document", function () {
@@ -17,23 +17,23 @@ describe("Document", function () {
     });
 
     it('should parse full content and get poster and content', function () {
-        var expectedContent = '# The content\n\n' +
-                'is not that extensively.\n',
+        var expectedContent = '\n\n# The content\n\n' +
+                'is not that extensively.',
             expectedPoster = '---\n' +
                 'title: Document example\n' +
                 'parent: examples\n' +
                 'class: document-body-classname\n' +
-                '---\n';
+                '---';
 
 
         doc.parseContent();
 
-        assert(doc.content, expectedContent);
-        assert(doc.poster, expectedPoster);
+        expect(doc.content).to.equal(expectedContent);
+        expect(doc.poster).to.equal(expectedPoster);
     });
 
     it('should get data from poster', function () {
-        var expect = {
+        var expectedPosterData = {
             title: 'Document example',
             class: 'document-body-classname',
             parent: 'examples'
@@ -41,11 +41,11 @@ describe("Document", function () {
 
         doc.parseContent();
 
-        assert.deepEqual(doc.getPosterValuesFromPoster(), expect);
+        expect(doc.getPosterValuesFromPoster()).to.deep.equal(expectedPosterData);
     });
 
     it('should merge poster defaults with poster from content', function () {
-        var expect = {
+        var expectedPosterData = {
             title: 'Document example',
             class: 'document-body-classname',
             layout: 'default',
@@ -55,6 +55,6 @@ describe("Document", function () {
         doc.parseContent();
         doc.preparePosterData();
 
-        assert.deepEqual(doc.posterData, expect);
+        expect(doc.posterData).to.deep.equal(expectedPosterData);
     });
 });
