@@ -1,6 +1,10 @@
 {
   "name": "piedmont",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tilmanjusten/piedmont"
+  },
   "description": "Creates Living Styleguide from Frontend Prototype and its Source Files.",
   "main": "index.js",
   "scripts": {
