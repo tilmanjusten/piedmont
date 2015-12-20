@@ -43,10 +43,10 @@ var Piedmont = function(options) {
 
 Piedmont.prototype.defaultOptions = {
     theme: path.resolve(__dirname, 'theme/default'),
-    tmp: path.resolve(__dirname, '.tmp'),
+    tmp: '.tmp',
 
     cwd: __dirname,
-    dest: 'test/result/styling-guidelines',
+    dest: 'dist/styling-guidelines',
     src: 'test/fixtures/build',
     styles: 'test/fixtures/styles',
     docs: 'test/fixtures/docs'
