@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs-extra'),
     _ = require('lodash'),
     assert = require('assert'),

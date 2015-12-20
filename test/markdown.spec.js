@@ -1,3 +1,5 @@
+'use strict';
+
 var markdown = require('../lib/docs/markdown'),
     assert = require('assert'),
     fs = require('fs-extra');
