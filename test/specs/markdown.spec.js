@@ -1,8 +1,9 @@
 'use strict';
 
-var markdown = require('../lib/docs/markdown'),
+var markdown = require('../../lib/docs/markdown'),
     expect = require('chai').expect,
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    resolve = require('path').resolve;
 
 describe('Markdown', function () {
 
@@ -15,8 +16,8 @@ describe('Markdown', function () {
        });
 
         it('should highlight code blocks', function () {
-            var fixture = fs.readFileSync(__dirname + '/fixtures/docs/code.md', 'utf8'),
-                expectation = fs.readFileSync(__dirname + '/expectations/docs/code.html', 'utf8');
+            var fixture = fs.readFileSync(resolve(__dirname, '../fixtures/docs/code.md'), 'utf8'),
+                expectation = fs.readFileSync(resolve(__dirname, '../expectations/docs/code.html'), 'utf8');
 
             expect(markdown.convert(fixture)).to.equal(expectation);
         });
@@ -24,7 +25,7 @@ describe('Markdown', function () {
 
     describe('get poster data from content', function () {
         it('should extract title from first headline', function () {
-            var fixture = fs.readFileSync(__dirname + '/fixtures/docs/poster-from-content.md', 'utf8'),
+            var fixture = fs.readFileSync(resolve(__dirname, '../fixtures/docs/poster-from-content.md'), 'utf8'),
                 expectation = {title: 'Get poster data from content'},
                 falseExpectation = {title: 'Subheadline'};
 

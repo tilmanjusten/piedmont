@@ -1,7 +1,8 @@
 'use strict';
 
 var fs = require('fs-extra'),
-    prepareStyleguide = require('../lib/prepare-styleguide'),
+    resolve = require('path').resolve,
+    prepareStyleguide = require('../../lib/prepare-styleguide'),
     expect = require('chai').expect;
 
 describe('PrepareStyleguide', function () {
@@ -9,23 +10,23 @@ describe('PrepareStyleguide', function () {
         var styleguide;
 
         before(function (done) {
-            fs.emptyDirSync(__dirname + '/.tmp');
+            fs.emptyDirSync(resolve(__dirname, '../.tmp'));
 
-            var stylesheetParserData = fs.readJsonSync(__dirname + '/fixtures/lib/stylesheet-parser-data.json');
+            var stylesheetParserData = fs.readJsonSync(resolve(__dirname, '../fixtures/lib/stylesheet-parser-data.json'));
 
-            prepareStyleguide(stylesheetParserData, __dirname + '/.tmp/prepare-styleguide-result.json', function (err, result) {
+            prepareStyleguide(stylesheetParserData, resolve(__dirname, '../.tmp/prepare-styleguide-result.json'), function (err, result) {
                 styleguide = result;
                 done();
             });
         });
 
         after(function () {
-            fs.removeSync(__dirname + '/.tmp', function () {});
+            fs.removeSync(resolve(__dirname, '../.tmp'), function () {});
         });
 
         it('should write data to json file', function () {
             expect(function () {
-                fs.accessSync(__dirname + '/.tmp/prepare-styleguide-result.json', fs.R_OK);
+                fs.accessSync(resolve(__dirname, '../.tmp/prepare-styleguide-result.json'), fs.R_OK);
             }).to.not.throw(Error);
         });
 

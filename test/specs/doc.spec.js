@@ -1,15 +1,16 @@
 'use strict';
 
 var fs = require('fs-extra'),
+    path = require('path'),
     expect = require('chai').expect,
-    Doc = require('../lib/docs/doc');
+    Doc = require('../../lib/docs/doc');
 
 describe("Document", function () {
     var doc,
         content;
 
     before(function () {
-        content = fs.readFileSync(__dirname + '/fixtures/lib/doc.md', 'utf8');
+        content = fs.readFileSync(path.resolve(__dirname, '../fixtures/lib/doc.md'), 'utf8');
     });
 
     beforeEach(function () {

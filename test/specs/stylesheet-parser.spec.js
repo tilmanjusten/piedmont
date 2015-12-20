@@ -2,12 +2,13 @@
 
 var fs = require('fs-extra'),
     _ = require('lodash'),
+    path = require('path'),
     expect = require('chai').expect,
-    stylesheetParser = require('../lib/stylesheet-parser'),
-    expectations = fs.readJsonSync(__dirname + '/expectations/stylesheet-parser.json');
+    stylesheetParser = require('../../lib/stylesheet-parser'),
+    expectations = fs.readJsonSync(path.resolve(__dirname, '../expectations/stylesheet-parser.json'));
 
 function getFixture(annotation, cb) {
-    stylesheetParser(__dirname + '/fixtures/styles/' + annotation + '.scss', cb);
+    stylesheetParser(path.resolve(__dirname, '../fixtures/styles/' + annotation + '.scss'), cb);
 }
 
 describe('StylesheetParser', function () {
