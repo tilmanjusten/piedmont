@@ -9,7 +9,7 @@ describe('PrepareStyleguide', function () {
         var styleguide;
 
         before(function (done) {
-            fs.emptyDir(__dirname + '/.tmp', function () {});
+            fs.emptyDirSync(__dirname + '/.tmp');
 
             var stylesheetParserData = fs.readJsonSync(__dirname + '/fixtures/lib/stylesheet-parser-data.json');
 
