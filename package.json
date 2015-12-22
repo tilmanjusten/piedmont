@@ -8,7 +8,8 @@
   "description": "Creates Living Styleguide from Frontend Prototype and its Source Files.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/specs"
+    "test": "./node_modules/.bin/mocha test/specs",
+    "coverage": "istanbul cover test -- -R spec"
   },
   "keywords": [
     "living",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "istanbul": "^0.4.1",
     "mocha": "^2.3.4"
   }
 }
