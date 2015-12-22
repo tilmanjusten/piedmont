@@ -8,8 +8,9 @@
   "description": "Creates Living Styleguide from Frontend Prototype and its Source Files.",
   "main": "index.js",
   "scripts": {
-    "coverage": "istanbul cover test -- -R spec"
     "test": "./node_modules/.bin/mocha test/specs --require mocha-clean",
+    "coverage": "istanbul cover test -- -R spec",
+    "coveralls": "istanbul cover test --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "keywords": [
     "living",
