@@ -311,6 +311,10 @@
         "end": 1
       },
       "context": {
+        "line": {
+          "end": 13,
+          "start": 4
+        },
         "type": "css",
         "name": "button,\ninput[type=submit],\ninput[type=reset]",
         "value": "background: cornflowerblue;\n  border-radius: 2px;\n  border: 0;\n  color: white;\n  font-size: 1em;\n  min-width: 15ex;\n  outline: 0;\n  padding: 0.5em 1em;"
@@ -326,6 +330,10 @@
         "end": 2
       },
       "context": {
+        "line": {
+          "end": 12,
+          "start": 3
+        },
         "type": "css",
         "name": ".button-light",
         "value": "background: white;\n  border: thin solid currentColor;\n  border-radius: 3px;\n  color: purple;\n  font-size: 1em;\n  min-width: 15ex;\n  outline: 0;\n  padding: 0.5em 1em;"
