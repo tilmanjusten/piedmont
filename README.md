@@ -34,13 +34,22 @@ Default value: `'./test/result/styling-guidelines'`
 Destination path of the generated living styleguide. Path is relative to `cwd`.
 
 ### `docs`
-Type: `String`
+Type: `Boolean`, `String`
 Default value: `./test/fixtures/docs`
 
 Source path of markdown files that will be parsed and converted to content pages. Piedmont uses a 
 [glob pattern](https://www.npmjs.com/package/glob) to get the files: `./test/fixtures/docs/*.md`.
 
 Path is relative to `cwd`. See the [Documents section for further details.](#documents)
+
+Set to `false` if creating a styleguide is not required.
+
+### `inventory`
+Type: `Boolean`
+Default value: `true`
+
+Building a component inventory based on the frontend prototype in the `src` directory. Set to 
+`false` if creating a component inventory is not required. 
 
 ### `src`
 Type: `String`
@@ -49,13 +58,15 @@ Default value: `'./test/fixtures/build'`
 Path of the built frontend prototype. Path is relative to `cwd`.
 
 ### `styles`
-Type: `String`
+Type: `Boolean`, `String`
 Default value: `'./test/fixtures/styles'`
 
 Path to the annotated stylesheet files. Currently only Sass files are supported, so you have to specify the path only. 
 Piedmont uses a [glob pattern](https://www.npmjs.com/package/glob) to get the files: `./src/sass/**/*.scss`.
  
 Path is relative to `cwd`.
+
+Set to `false` if creating a styleguide is not required. 
 
 ### `theme`
 Type: `String`
@@ -122,7 +133,7 @@ The partial name will be *A special partial*.
 
 #### `wrap`
 
-Multiple value property. For rendering purposes in the interface inventory you might wrap the partial code in 
+Multiple value property. For rendering purposes in the component inventory you might wrap the partial code in 
 additional markup. While components should be independent of their context, it is necessary to show how they 
 behave in several contexts, e.g. content sections in grid layout.
 
@@ -142,7 +153,7 @@ behave in several contexts, e.g. content sections in grid layout.
 <!-- endextract -->
 ```
 
-In both cases the partial code is the same. The markup that is used to render the component in the interface 
+In both cases the partial code is the same. The markup that is used to render the component in the component 
 inventory differs.
 
 **Teaser**
