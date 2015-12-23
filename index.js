@@ -49,10 +49,16 @@ Piedmont.prototype.defaultOptions = {
     dest: 'dist/styling-guidelines',
     src: 'test/fixtures/build',
     styles: 'test/fixtures/styles',
-    docs: 'test/fixtures/docs'
+    docs: 'test/fixtures/docs',
+
+    inventory: true
 };
 
 Piedmont.prototype.inventory = function () {
+    if (!this.options.inventory) {
+        return;
+    }
+    
     var options = this.options,
         ci;
 
@@ -84,6 +90,10 @@ Piedmont.prototype.inventory = function () {
 };
 
 Piedmont.prototype.styleguide = function () {
+    if (!this.options.styles) {
+        return;
+    }
+
     var dest = this.options.tmp + '/templates/data/styleguide.json';
 
     // Make Styleguide
@@ -104,6 +114,10 @@ Piedmont.prototype.templates = function () {
 };
 
 Piedmont.prototype.assets = function () {
+    if (!this.options.styles && !this.options.inventory) {
+        return;
+    }
+
     var options = this.options;
 
     fs.access(this.options.theme + '/css', function (err) {
@@ -131,6 +145,10 @@ Piedmont.prototype.assets = function () {
 };
 
 Piedmont.prototype.docs = function () {
+    if (!this.options.docs) {
+        return;
+    }
+
     var dest = this.options.tmp + '/templates/pages',
         srcPattern = this.options.docs + '/*.md',
         docTemplateSrc = this.options.theme + '/templates/doc.template.hbs',
