@@ -10,9 +10,8 @@ var stylesheetParser = require('./lib/stylesheet-parser'),
     path = require('path'),
     assemble = require('assemble'),
     extname = require('gulp-extname'),
-    glob = require('glob');
-
-module.exports = pm;
+    glob = require('glob'),
+    Piedmont;
 
 function pm(options, callback) {
     options = typeof options === 'object' ? options : {};
@@ -27,12 +26,20 @@ function noop() {
 
 }
 
-var Piedmont = function(options) {
-    this.options = _.assign(this.defaultOptions, options);
+Piedmont = function(options) {
+    this.options = _.assign({}, this.defaultOptions, options);
 
     this.options.dest = path.resolve(this.options.cwd, this.options.dest);
     this.options.src = path.resolve(this.options.cwd, this.options.src);
-    this.options.styles = path.resolve(this.options.cwd, this.options.styles);
+    this.options.styles = typeof this.options.styles === 'string' ?
+        path.resolve(this.options.cwd, this.options.styles) :
+        false;
+    this.options.docs = typeof this.options.docs === 'string' ?
+        path.resolve(this.options.cwd, this.options.docs) :
+        false;
+    this.options.theme = typeof this.options.theme === 'string' ?
+        path.resolve(this.options.cwd, this.options.theme) :
+        this.defaultOptions.theme;
 
     // Empty temp and dest folder and ensure they exist
     fs.emptyDirSync(this.options.tmp);
@@ -176,3 +183,7 @@ Piedmont.prototype.create = function (callback) {
         callback(null, null);
     }, 2000);
 };
+
+
+module.exports = pm;
+module.exports.Piedmont = Piedmont;
