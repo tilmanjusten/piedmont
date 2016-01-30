@@ -1,27 +1,92 @@
 <!doctype html>
-<!--[if lt IE 9]>      <html class="lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html class="lte-ie9 ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
 <head>
+    <meta charset="utf-8">
     <title>{{page-title}} - Living Styleguide</title>
-    {{> head}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    <script type="text/javascript">document.documentElement.className += ' js';</script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/highlightjs/styles/github.css">
+
 </head>
 <body{{#if page-class}} class="{{page-class}}"{{/if}}>
-<!--[if lte IE 9]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 
 
-{{> document-header}}
+<header class="styleguide-section__header">
+
+    <section class="styleguide__header-navigation">
+
+        <h2 class="visuallyhidden">Navigation</h2>
+
+        <div class="section__main">
+            <button class="styleguide-navigation-toggle">
+                <span class="sr-only">Menu</span>
+            </button>
+            <a href="index.html" class="styleguide-logo">Styling Guidelines</a>
+            <nav class="styleguide-navigation">
+                <ul>
+                    <li>
+                        <a href="index.html">Basic Styleguide</a>
+                    </li>
+                    <li>
+                        <a class="active" href="component-inventory.html">
+                            Interface Inventory
+                            <span class="styleguide-navigation__count">{{inventory.navigation.lengthUnique}}</span>
+                        </a>
+
+                        <ul>
+                            {{#each inventory.navigation.items}}
+                                <li>
+                                    <a href="{{this.href}}">
+                                        {{this.name}}
+                                        <span class="styleguide-navigation__count">{{this.itemLength}}</span>
+                                    </a>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </li>
+
+                    {{#each docs.items}}
+                        <li>
+                            <a href="{{this.filename}}.html">{{this.name}}</a>
+                            {{#if this.subpages}}
+                                <ul>
+                                    {{#each this.subpages}}
+                                        <li>
+                                            <a href="{{this.filename}}.html">{{this.name}}</a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </nav>
+
+            <div class="styleguide-options"></div>
+        </div>
+    </section>
+
+</header>
 
 
 {% body %}
 
 
-{{> document-footer}}
-
-
-{{> foot}}
+<script src="js/vendor/lodash.min.js"></script>
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="js/colors.js"></script>
+<script src="js/iframe.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/tab.js"></script>
 
 </body>
 </html>

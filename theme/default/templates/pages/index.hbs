@@ -1,13 +1,13 @@
 ---
 page-title: Styleguide
-page-class: "vsg-page vsg-page--index"
+page-class: "index"
 layout: default
 ---
 
 
 <main class="styleguide-section__main">
 
-    <div class="styleguide-section__container">
+    <div class="container">
 
         <h1>Basic Styleguide</h1>
 
@@ -20,7 +20,7 @@ layout: default
 
             {{#if styleguide.colorsByGroup}}
 
-                <div class="m-tab theme-basic" data-label="All">
+                <div class="tab theme-basic" data-label="All">
 
                     <ul class="styleguide-colors">
 
@@ -45,7 +45,7 @@ layout: default
 
                 </div>
 
-                <div class="m-tab theme-basic" data-label="By Group">
+                <div class="tab theme-basic" data-label="By Group">
                     {{#each styleguide.colorsByGroup}}
 
                         <h4>{{this.name}}</h4>
