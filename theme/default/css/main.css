@@ -41,30 +41,33 @@
     visibility: hidden;
 }
 
-.styleguide-container:before, .tab__container:before,
-.tab__nav:before, .styleguide-colors:before,
-.styleguide-container:after,
-.tab__container:after,
-.tab__nav:after, .styleguide-colors:after,
-.clearfix:before,
-.clearfix:after {
+.styleguide-container::before,
+.tab__container::before,
+.tab__nav::before,
+.styleguide-colors::before,
+.styleguide-container::after,
+.tab__container::after,
+.tab__nav::after,
+.styleguide-colors::after,
+.clearfix::before,
+.clearfix::after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */
 }
 
-.styleguide-container:after,
-.tab__container:after,
-.tab__nav:after,
-.styleguide-colors:after,
-.clearfix:after {
+.styleguide-container::after,
+.tab__container::after,
+.tab__nav::after,
+.styleguide-colors::after,
+.clearfix::after {
     clear: both;
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
@@ -434,7 +437,7 @@ body {
     outline: 0;
 }
 
-.styleguide-options__toggle:before {
+.styleguide-options__toggle::before {
     height: 40px;
     background-image: url("../img/svg-sprite.svg");
     background-position: 0px -80px;
@@ -455,7 +458,7 @@ body {
     position: relative;
 }
 
-.styleguide-options__toggle[class*=styleguide-options--]:before {
+.styleguide-options__toggle[class*=styleguide-options--]::before {
     height: 40px;
     background-image: url("../img/svg-sprite.svg");
     background-position: 0px -120px;
@@ -628,7 +631,7 @@ body {
     transform: translateX(22.5rem);
 }
 
-.styleguide-navigation-toggle:after {
+.styleguide-navigation-toggle::after {
     bottom: 0;
     content: "+";
     display: block;
@@ -645,7 +648,7 @@ body {
     top: 0;
 }
 
-.styleguide-navigation-toggle:after {
+.styleguide-navigation-toggle::after {
     content: "-";
 }
 
@@ -754,7 +757,7 @@ body {
     position: absolute;
 }
 
-.styleguide-logo:before {
+.styleguide-logo::before {
     height: 40px;
     background-image: url("../img/svg-sprite.svg");
     background-position: 0px -160px;
@@ -911,13 +914,14 @@ body {
 
 .styleguide-inventory__navigation a {
     padding: 1.2rem 2.4rem;
-    background-color: #01ADEF;
+    background-color: lightseagreen;
     color: #fff;
+    text-decoration: none;
 }
 
 .styleguide-inventory__navigation a:focus,
 .styleguide-inventory__navigation a:hover {
-    background-color: #0182E5;
+    background-color: #1a948e;
     color: #fff;
     text-decoration: none;
 }
