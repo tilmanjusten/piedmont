@@ -12,7 +12,7 @@ describe('Piedmont', function () {
             var pm = new Piedmont(),
                 fixture = {
                     theme: path.resolve(__dirname, '../..', 'theme/default'),
-                    tmp: '.tmp',
+                    tmp: path.resolve(__dirname, '../..', '.tmp'),
                     cwd: path.resolve(__dirname, '../..'),
                     dest: path.resolve(__dirname, '../..', 'dist/styling-guidelines'),
                     src: path.resolve(__dirname, '../..', 'test/fixtures/build'),
@@ -44,7 +44,7 @@ describe('Piedmont', function () {
                 }),
                 fixture = {
                     theme: path.resolve(__dirname, '../..', 'theme/light'),
-                    tmp: '.temporary',
+                    tmp: path.resolve(__dirname, '../..', '.temporary'),
                     cwd: path.resolve(__dirname, '../..'),
                     dest: path.resolve(__dirname, '../..', 'styleguide'),
                     src: path.resolve(__dirname, '../..', 'test/fixtures/build'),
