@@ -515,7 +515,7 @@ body {
     padding: 2rem 0 0;
 }
 
-.theme-basic .tab__container.pane--active {
+.theme-button .tab__container.pane--active {
     border-top: 0;
     background: none;
     padding: 1rem 0 0;
@@ -560,7 +560,7 @@ body {
     box-shadow: -2px 2px 5px rgba(30, 80, 30, 0.1);
 }
 
-.theme-basic .tab__nav-item {
+.theme-button .tab__nav-item {
     color: lightseagreen;
     background: none;
     border: thin solid currentColor;
@@ -579,12 +579,12 @@ body {
     box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.theme-basic .tab__nav-item.tab--active {
+.theme-button .tab__nav-item.tab--active {
     border-color: lightseagreen;
     background-color: lightseagreen;
 }
 
-.theme-basic .tab__nav-item.tab--active::after {
+.theme-button .tab__nav-item.tab--active::after {
     display: none;
 }
 
