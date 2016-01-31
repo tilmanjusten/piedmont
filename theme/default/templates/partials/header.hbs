@@ -1,0 +1,56 @@
+<header class="styleguide-section__header">
+
+    <section class="styleguide__header-navigation">
+
+        <h2 class="visuallyhidden">Navigation</h2>
+
+        <div class="section__main">
+            <button class="styleguide-navigation-toggle">
+                <span class="sr-only">Menu</span>
+            </button>
+            <a href="index.html" class="styleguide-logo">Styling Guidelines</a>
+            <nav class="styleguide-navigation">
+                <ul>
+                    <li>
+                        <a href="index.html">Basic Styleguide</a>
+                    </li>
+                    <li>
+                        <a class="active" href="component-inventory.html">
+                            Interface Inventory
+                            <span class="styleguide-navigation__count">{{inventory.navigation.lengthUnique}}</span>
+                        </a>
+
+                        <ul>
+                            {{#each inventory.navigation.items}}
+                                <li>
+                                    <a href="{{this.href}}">
+                                        {{this.name}}
+                                        <span class="styleguide-navigation__count">{{this.itemLength}}</span>
+                                    </a>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </li>
+
+                    {{#each docs.items}}
+                        <li>
+                            <a href="{{this.filename}}.html">{{this.name}}</a>
+                            {{#if this.subpages}}
+                                <ul>
+                                    {{#each this.subpages}}
+                                        <li>
+                                            <a href="{{this.filename}}.html">{{this.name}}</a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </nav>
+
+            <div class="styleguide-options"></div>
+        </div>
+    </section>
+
+</header>
