@@ -40,6 +40,9 @@ Piedmont = function(options) {
     this.options.theme = typeof this.options.theme === 'string' ?
         path.resolve(this.options.cwd, this.options.theme) :
         this.defaultOptions.theme;
+    this.options.tmp = typeof this.options.tmp === 'string' ?
+        path.resolve(this.options.cwd, this.options.tmp) :
+        path.resolve(this.options.cwd, this.defaultOptions.tmp);
 
     // Empty temp and dest folder and ensure they exist
     fs.emptyDirSync(this.options.tmp);
