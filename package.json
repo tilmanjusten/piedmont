@@ -18,7 +18,7 @@
   "author": "Tilman Justen <info@tilmanjusten.de>",
   "license": "MIT",
   "dependencies": {
-    "assemble": "0.6.2",
+    "assemble": "0.8.0",
     "component-inventory": "^0.0.3",
     "fs-extra": "^0.26.5",
     "glob": "^6.0.4",

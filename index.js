@@ -26,7 +26,7 @@ function noop() {
 
 }
 
-Piedmont = function(options) {
+Piedmont = function (options) {
     this.options = _.assign({}, this.defaultOptions, options);
 
     this.options.dest = path.resolve(this.options.cwd, this.options.dest);
@@ -68,7 +68,7 @@ Piedmont.prototype.inventory = function () {
     if (!this.options.inventory) {
         return;
     }
-    
+
     var options = this.options,
         ci;
 
@@ -113,14 +113,35 @@ Piedmont.prototype.styleguide = function () {
     });
 };
 
-Piedmont.prototype.templates = function () {
+Piedmont.prototype.templates = function (callback) {
+    const options = this.options;
+
+    let app = assemble({});
+
     // Build templates
-    assemble.partials(this.options.theme + '/templates/partials/**/*.hbs');
-    assemble.layouts(this.options.theme + '/templates/layouts/*.hbs');
-    assemble.data([this.options.tmp + '/templates/data/*.json', this.options.theme + '/templates/data/*.json']);
-    assemble.src([this.options.tmp + '/templates/pages/*.hbs', this.options.theme + '/templates/pages/*.hbs'])
-        .pipe(extname())
-        .pipe(assemble.dest(this.options.dest));
+    app.task('templates', function () {
+        app.create('pages');
+        app.partials(options.theme + '/templates/partials/**/*.hbs');
+        app.layouts(options.theme + '/templates/layouts/*.hbs');
+        app.data([options.tmp + '/templates/data/*.json', options.theme + '/templates/data/*.json']);
+        app.pages([options.tmp + '/templates/pages/*.hbs', options.theme + '/templates/pages/*.hbs']);
+        app.toStream('pages')
+            .on('err', console.log)
+            .pipe(app.renderFile())
+            .on('assemble', console.log)
+            .pipe(extname())
+            .pipe(app.dest(function (file) {
+                // set dirname to destination path
+                file.dirname = options.dest;
+                return file.base;
+            }))
+            .on('end', function () {
+                console.log('Templates done!');
+                callback();
+            });
+    });
+
+    app.build(['templates'], err => { if (err) throw err });
 };
 
 Piedmont.prototype.assets = function () {
@@ -179,12 +200,7 @@ Piedmont.prototype.create = function (callback) {
     this.styleguide();
     this.inventory();
     this.docs();
-    this.templates();
-
-    // Wait for the files in assets() and templates() to be written, seems to be kind of async
-    setTimeout(function () {
-        callback(null, null);
-    }, 2000);
+    this.templates(callback);
 };
 
 
