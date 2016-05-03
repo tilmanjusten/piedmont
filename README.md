@@ -112,11 +112,11 @@ Single value property. Sets the partial category.
 ```html
 <!-- extract:News teaser category:Teaser -->
 ...
-<!-- endetract -->
+<!-- endextract -->
 
 <!-- extract:Event teaser category:Teaser -->
 ...
-<!-- endetract -->
+<!-- endextract -->
 ```
 
 #### `name`
@@ -126,7 +126,7 @@ Single value property. Sets the partial name explicitly. Overrides the value of 
 ```html
 <!-- extract:A common partial name:A special partial -->
 ...
-<!-- endetract -->
+<!-- endextract -->
 ```
 
 The partial name will be *A special partial*.
