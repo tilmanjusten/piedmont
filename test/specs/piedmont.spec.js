@@ -38,13 +38,13 @@ describe('Piedmont', function () {
             var pm = new Piedmont({
                     dest: 'styleguide',
                     inventory: false,
-                    tmp: '.temporary',
+                    tmp: '.tmp',
                     theme: 'theme/light',
                     docs: 'docs'
                 }),
                 fixture = {
                     theme: path.resolve(__dirname, '../..', 'theme/light'),
-                    tmp: path.resolve(__dirname, '../..', '.temporary'),
+                    tmp: path.resolve(__dirname, '../..', '.tmp'),
                     cwd: path.resolve(__dirname, '../..'),
                     dest: path.resolve(__dirname, '../..', 'styleguide'),
                     src: path.resolve(__dirname, '../..', 'test/fixtures/build'),
