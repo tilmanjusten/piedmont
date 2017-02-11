@@ -69,20 +69,18 @@ Piedmont.prototype.inventory = function () {
         return;
     }
 
-    var options = this.options,
-        ci;
+    var options = this.options;
 
     // Extract partials and build component inventory
     partialExtract(glob.sync(options.src + '/*.html'), {
         force: true,
-        base: options.dest,
         storage: false,
         //partialWrap: false,
         //flatten: true,
         storePartials: false,
         partials: 'partials/'
     }, function (err, inventory) {
-        ci = componentInventory({
+        var ci = componentInventory({
             expand: true,
             storage: inventory,
             destData: options.tmp + '/templates/data/inventory.json',
@@ -107,7 +105,7 @@ Piedmont.prototype.styleguide = function () {
     var dest = this.options.tmp + '/templates/data/styleguide.json';
 
     // Make Styleguide
-    stylesheetParser(this.options.styles + '/**/*.scss', function (err, styleguide) {
+    stylesheetParser(this.options.styles + '/**/*.{less,scss,stylus,sass}', function (err, styleguide) {
         // Create styleguide as json that will be used by assemble for building the templates
         prepareStyleguide(styleguide, dest);
     });
