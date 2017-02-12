@@ -13,7 +13,7 @@
 
         for (var i = 0, length = iframeWrappers.length; i < length; i++) {
             var element = iframeWrappers[i];
-            var markup = _.unescape(element.innerHTML);
+            var markup = element.innerHTML;
 
             if (!markup) {
                 return;
