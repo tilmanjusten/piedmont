@@ -5,20 +5,14 @@
         moduleSelector: '.tab',
         container: '<div></div>',
         labelSelector: '.tab__label'
-        },
-        options = {},
-        $window;
-
-    var prepare,
-        scaffold,
-        open,
-        prepareLinks,
-        activateSelectedTab;
+    };
+    var options = {};
+    var $window;
 
     /**
      * prepare tab groups
      */
-    prepare = function () {
+    var prepare = function () {
         $window = $(window);
         options = $.extend({}, defaults);
 
@@ -63,7 +57,7 @@
      * @param group
      * @param itGroup
      */
-    scaffold = function (group, itGroup) {
+    var scaffold = function (group, itGroup) {
         var $wrapper = $(options.container).addClass('tab');
         var $content = $('<div></div>').addClass('tab__content');
         var $navigation = $('<ul></ul>').addClass('tab__nav');
@@ -130,18 +124,18 @@
     /**
      * Prepare links
      */
-    prepareLinks = function(idPanel, idTab) {
-      $('#' + idPanel + ' a').not('a[href="#"]').attr('href', function(i, href) {
-        if (this.href.split('?')[0] === window.location.href.split('#')[0].split('?')[0]) {
-          return href + '#' + idTab;
-        }
-      });
+    var prepareLinks = function (idPanel, idTab) {
+        $('#' + idPanel + ' a').not('a[href="#"]').attr('href', function (i, href) {
+            if (this.href.split('?')[0] === window.location.href.split('#')[0].split('?')[0]) {
+                return href + '#' + idTab;
+            }
+        });
     };
 
     /**
      * Switch tab
      */
-    open = function(evt) {
+    var open = function (evt) {
         evt.preventDefault();
 
         var $tab = $(this);
@@ -176,7 +170,7 @@
     /**
      * set selected tab to be active (selected by hash value in url)
      */
-    activateSelectedTab = function () {
+    var activateSelectedTab = function () {
         var hash = window.location.hash;
         if (hash !== undefined && hash.length > 0) {
             $(hash).find('a').trigger('click');

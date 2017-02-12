@@ -1,17 +1,16 @@
 'use strict';
 
-var stylesheetParser = require('./lib/stylesheet-parser'),
-    prepareStyleguide = require('./lib/prepare-styleguide'),
-    prepareDocs = require('./lib/docs'),
-    componentInventory = require('component-inventory'),
-    partialExtract = require('partial-extract'),
-    _ = require('lodash'),
-    fs = require('fs-extra'),
-    path = require('path'),
-    assemble = require('assemble'),
-    extname = require('gulp-extname'),
-    glob = require('glob'),
-    Piedmont;
+var stylesheetParser = require('./lib/stylesheet-parser');
+var prepareStyleguide = require('./lib/prepare-styleguide');
+var prepareDocs = require('./lib/docs');
+var componentInventory = require('component-inventory');
+var partialExtract = require('partial-extract');
+var _ = require('lodash');
+var fs = require('fs-extra');
+var path = require('path');
+var assemble = require('assemble');
+var extname = require('gulp-extname');
+var glob = require('glob');
 
 function pm(options, callback) {
     options = typeof options === 'object' ? options : {};
@@ -26,7 +25,7 @@ function noop() {
 
 }
 
-Piedmont = function (options) {
+var Piedmont = function (options) {
     this.options = _.assign({}, this.defaultOptions, options);
 
     this.options.dest = path.resolve(this.options.cwd, this.options.dest);
@@ -80,6 +79,13 @@ Piedmont.prototype.inventory = function () {
         storePartials: false,
         partials: 'partials/'
     }, function (err, inventory) {
+        if (err) {
+            console.log("Partial extraction failed.");
+            console.error(err);
+
+            return;
+        }
+
         var ci = componentInventory({
             expand: true,
             storage: inventory,
@@ -124,7 +130,7 @@ Piedmont.prototype.templates = function (callback) {
         app.data([options.tmp + '/templates/data/*.json', options.theme + '/templates/data/*.json']);
         app.pages([options.tmp + '/templates/pages/*.hbs', options.theme + '/templates/pages/*.hbs']);
         app.toStream('pages')
-            .on('err', console.log)
+            .on('err', console.error)
             .pipe(app.renderFile())
             .on('assemble', console.log)
             .pipe(extname())
@@ -178,13 +184,12 @@ Piedmont.prototype.docs = function () {
         return;
     }
 
-    var dest = this.options.tmp + '/templates/pages',
-        srcPattern = this.options.docs + '/*.md',
-        docTemplateSrc = this.options.theme + '/templates/doc.template.hbs',
-        pages;
+    var dest = this.options.tmp + '/templates/pages';
+    var srcPattern = this.options.docs + '/*.md';
+    var docTemplateSrc = this.options.theme + '/templates/doc.template.hbs';
 
     // build page templates from markdown documents
-    pages = prepareDocs(srcPattern, dest, docTemplateSrc);
+    var pages = prepareDocs(srcPattern, dest, docTemplateSrc);
 
     if (pages) {
         fs.writeJsonSync(this.options.tmp + '/templates/data/docs.json', {items: pages});

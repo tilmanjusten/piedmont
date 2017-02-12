@@ -1,29 +1,14 @@
 ;(function (window, _) {
     'use strict';
 
-    // methods
-    var collect,
-        insert,
-        prepareIframe,
-        updateIframe,
-        setup;
-
     // vars
-    var list,
-        document = window.document;
-
-    setup = function () {
-        list = [];
-        collect();
-        insert();
-    };
-
-    document.addEventListener("DOMContentLoaded", setup);
+    var list;
+    var document = window.document;
 
     /**
      * collect iframe wrappers, fetch content and prepare
      */
-    collect = function() {
+    var collect = function() {
         var iframeWrappers = document.querySelectorAll('.styleguide-iframe');
 
         for (var i = 0, length = iframeWrappers.length; i < length; i++) {
@@ -45,7 +30,7 @@
     /**
      * insert template content
      */
-    insert = function() {
+    var insert = function() {
         list.forEach(function (set) {
             // clear element content
             set.element.innerHTML = '';
@@ -62,11 +47,12 @@
      * @param markup
      * @param data
      */
-    prepareIframe = function (parent, markup, data) {
+    var prepareIframe = function (parent, markup, data) {
         // Create a new blank iframe
         var newIframe = document.createElement('iframe');
         // Set attributes for iFrame (do whatever suits)
-        newIframe.width = '100%'; newIframe.height = '100%';
+        newIframe.width = '100%';
+        newIframe.height = '100%';
         // This for the src makes it 'friendly'
         newIframe.src = 'about:blank';
 
@@ -89,9 +75,6 @@
         var scriptsFootInline = resources.scriptsFoot.inline.map(function (content) {
             return '<script>' +  content + '</script>';
         });
-
-        // Make this reference your hidden div containing the markup you want to insert
-        var getHTML = markup;
 
         // Set Meta data
         var META = '<base href="assets/">\n' + resources.meta.map(function (metaItem) {
@@ -120,7 +103,7 @@
         myContent += CSS;
         myContent += JS;
         myContent += '</head><body>';
-        myContent += getHTML;
+        myContent += markup;
         myContent += JSFoot;
         myContent += '</body></html>';
 
@@ -155,7 +138,7 @@
         });
     };
 
-    updateIframe = function () {
+    var updateIframe = function () {
         var iframe = this;
         var iframeDocument = iframe.contentWindow.document;
         var body = iframeDocument.body, html = iframeDocument.documentElement;
@@ -170,5 +153,12 @@
 
         iframe.style.minHeight = '';
     };
+
+    // run on dom ready
+    document.addEventListener("DOMContentLoaded", function () {
+        list = [];
+        collect();
+        insert();
+    });
 
 })(window, _);
