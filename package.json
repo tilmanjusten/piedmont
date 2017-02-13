@@ -22,14 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "assemble": "0.23.0",
-    "component-inventory": "^0.0.5",
+    "component-inventory": "^0.1.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.0.3",
     "gulp-extname": "^0.2.2",
     "highlight.js": "^9.3.0",
     "lodash": "^4.11.2",
     "marked": "^0.3.5",
-    "partial-extract": "^0.0.6",
+    "partial-extract": "^0.1.0",
     "scss-comment-parser": "^0.8.1"
   },
   "devDependencies": {
